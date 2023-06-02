@@ -1,0 +1,30 @@
+.fmp-plant-item-cover {
+	height: 300px;
+	width: 220px;
+	border-radius: 10px;
+	border: solid  #16AF78 1px;
+}
+
+.fmp-plant-item {
+	margin: 10px;
+	display: flex;
+	position: relative;
+	align-items: flex-start;
+	justify-content: top;
+	flex-direction: column;
+	text-transform: capitalize;
+}
+
+.fmp-condition {
+	color: #16AF78;
+	padding-left: 10px;
+	padding-right: 10px;
+    border: 1px solid #16AF78;
+    border-radius: 2%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 15%;
+    right: 7%;
+}

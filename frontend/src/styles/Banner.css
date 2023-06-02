@@ -1,0 +1,49 @@
+.fmp-banner {
+    color: #16AF78;
+    padding: 10px;
+    text-align: left;
+    display: flex;
+	justify-content: flex-start;
+	flex-direction: row;
+	align-items: center;
+    justify-content: space-between;
+    
+}
+
+.fmp-title {
+	padding-left: 32px;
+    text-decoration: none;
+}
+
+.link-style  {
+    text-decoration: none;
+  }
+
+
+
+.link-style {
+    text-decoration: none;
+    color: #16AF78;
+}
+
+.button-ad .link-style {
+    color: white;
+    
+}
+
+.button-ad {
+    background-color: #16AF78;
+    text-decoration: none;
+    border-radius: 5px;
+	border: solid  #16AF78 1px;
+    margin: 10px;
+    padding: 5px;
+}
+
+.button-login {
+    background-color: white;
+    border-radius: 5px;
+	border: solid  #16AF78 1px;
+    margin: 10px;
+    padding: 5px;
+}

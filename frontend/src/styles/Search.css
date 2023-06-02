@@ -1,0 +1,16 @@
+.fmp-search {
+    border-bottom: solid 1px #16AF78;
+    display: flex;
+	justify-content: flex-start;
+	flex-direction: row;
+    justify-content: center;
+}
+
+.button-search {
+    background-color: #16AF78;
+    color: white;
+    border-radius: 5px;
+	border: solid  #16AF78 1px;
+    margin: 10px;
+    padding: 5px;
+}
