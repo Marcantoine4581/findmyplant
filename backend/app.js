@@ -65,7 +65,7 @@ app.use('/api/plants', (req, res) => {
 
 app.use('/api/products', productRoutes);
 
-app.post('/api/products/', (req, res, next) => {
+/* app.post('/api/products/', (req, res, next) => {
 const product = new Product({
   ...req.body
 });
@@ -85,6 +85,6 @@ app.delete('/api/products/:id', (req, res, next) => {
   Product.deleteOne({ _id: req.params.id })
   .then(() => res.status(200).json({ message: 'Deleted!'}))
   .catch(error => res.status(400).json({ error }));
-});
+}); */
 
 module.exports = app;
