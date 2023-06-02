@@ -1,0 +1,5 @@
+/node_modules
+.env
+fichier.json
+filefrompy.json
+convert.js
