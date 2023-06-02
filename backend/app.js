@@ -1,8 +1,8 @@
 const express = require('express');
 const fs = require('fs');
 const mongoose = require('mongoose');
+const productRoutes = require('./routes/product');
 require('dotenv').config()
-
 const Product = require('./models/Product');
 
 mongoose.connect(process.env.DB_URL,
@@ -63,32 +63,22 @@ app.use('/api/plants', (req, res) => {
   res.status(200).json(products);
 }); */
 
-app.get('/api/products', (req, res, next) => {
-  Product.find()
-    .then(product => res.status(200).json({ product }))
-    .catch(error => res.status(400).json({ error }));
- });
+app.use('/api/products', productRoutes);
 
-app.get('/api/products/:id', (req, res, next) => {
-  Product.findOne({ _id: req.params.id })
-    .then(product => res.status(200).json({ product }))
-    .catch(error => res.status(400).json({ error }));
- });
-
- app.post('/api/products/', (req, res, next) => {
-  const product = new Product({
-    ...req.body
-  });
-  // .save enregistre les données dans la base.
-  product.save()
-    .then(product => res.status(201).json({ product }))
-    .catch(error => res.status(400).json({ error }));
- });
-
- app.put('/api/products/:id', (req, res, next) => {
-  Product.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
-  .then(() => res.status(200).json({ message: 'Modified!'}))
+app.post('/api/products/', (req, res, next) => {
+const product = new Product({
+  ...req.body
+});
+// .save enregistre les données dans la base.
+product.save()
+  .then(product => res.status(201).json({ product }))
   .catch(error => res.status(400).json({ error }));
+});
+
+app.put('/api/products/:id', (req, res, next) => {
+Product.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
+.then(() => res.status(200).json({ message: 'Modified!'}))
+.catch(error => res.status(400).json({ error }));
 });
 
 app.delete('/api/products/:id', (req, res, next) => {
