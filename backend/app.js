@@ -2,6 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const mongoose = require('mongoose');
 const productRoutes = require('./routes/product');
+const userRoutes = require('./routes/user');
 require('dotenv').config()
 const Product = require('./models/Product');
 
@@ -64,6 +65,7 @@ app.use('/api/plants', (req, res) => {
 }); */
 
 app.use('/api/products', productRoutes);
+app.use('/api/auth', userRoutes);
 
 /* app.post('/api/products/', (req, res, next) => {
 const product = new Product({

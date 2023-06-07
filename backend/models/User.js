@@ -7,9 +7,9 @@ const userSchema = mongoose.Schema({
     password: { type: String, required: true },
     adress: {
         street: { type: String },
-        city: { type: String, required: true },
-        postalCode: { type: String, required: true },
-        country: { type: String, required: true }
+        city: { type: String, required: false },
+        postalCode: { type: String, required: false },
+        country: { type: String, required: false }
     },
     profilPicture: { type: String }
 });

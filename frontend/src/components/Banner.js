@@ -1,9 +1,15 @@
 import '../styles/Banner.css'
 import Nav from 'react-bootstrap/Nav';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { accountService } from "../services/accountService";
 
 function Banner() {
 	const title = 'FindMyPlant'
+	let navigate = useNavigate()
+	const logout = () => {
+		accountService.logout()
+		navigate('/')
+	}
 	return (
 		<div className='fmp-banner'>
 			<h1 className='fmp-title'>
@@ -17,11 +23,31 @@ function Banner() {
 						Déposer une annonce
 					</Link>
 				</button>
-				<button className='button-login'>
-					<Link to="/login" className="link-style">
-						Se connecter
-					</Link>
-				</button>
+				{(!accountService.isLogged() && (
+					<>
+						<button className='button-login'>
+							<Link to="/login" className="link-style">
+								Se connecter
+							</Link>
+						</button>
+						<button className='button-register'>
+							<Link to="/register" className="link-style">
+								S'enregitrer
+							</Link>
+						</button>
+					</>
+				)) || (
+					<>
+						<button className='button-account'>
+							<Link to="/register" className="link-style">
+								Mon compte
+							</Link>
+						</button>
+						<button className='button-logout' onClick={logout}>
+							Déconnection
+						</button>	
+					</>
+				)}
 			</div>
 		</div>
 	);
