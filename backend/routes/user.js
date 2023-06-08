@@ -3,7 +3,9 @@ const router = express.Router();
 
 const userCtrl = require('../controllers/user');
 
-router.post('/signup', userCtrl.signup);
-router.post('/login', userCtrl.login);
+router.get('/', userCtrl.getAllUser);
+router.get('/:id', userCtrl.getOneUser);
+router.get('/:id/products', userCtrl.getAllProductByUser);
+
 
 module.exports = router;

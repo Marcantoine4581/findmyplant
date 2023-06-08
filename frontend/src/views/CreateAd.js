@@ -7,11 +7,13 @@ import Container from 'react-bootstrap/Container'
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import InputGroup from 'react-bootstrap/InputGroup';
+import { accountService } from '../services/accountService';
 
 
 function CreateAd() {
+  const uid = localStorage.getItem('userId');
   const [form, setForm] = useState({
-    userId: "",
+    userId: uid,
     plantName: "",
     condition: "",
     price: "",
@@ -19,6 +21,8 @@ function CreateAd() {
     imageUrl: "",
   });
   const navigate = useNavigate();
+  
+  
   
    // These methods will update the state properties.
   function updateForm(value) {
@@ -56,10 +60,10 @@ function CreateAd() {
       <Search />
       <Container style={{ border: "solid #16AF78 1px" }}>
         <h1>Déposer une annonce</h1>
+      
+       <Form onSubmit={onSubmit}>
         
-        <Form onSubmit={onSubmit}>
-          {/* userID */}
-          <Form.Group controlId="userId">
+          {/*  <Form.Group controlId="userId">
             <Form.Label>userId</Form.Label>
             <Form.Control 
               type="text"
@@ -67,7 +71,7 @@ function CreateAd() {
               value={form.userId}
               onChange={(e) => updateForm({ userId: e.target.value })}
             />
-          </Form.Group>
+          </Form.Group> */}
 
           {/* Champ nom de la plante */}
           <Form.Group controlId="plantName">

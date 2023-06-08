@@ -1,21 +1,23 @@
 const Product = require('../models/Product');
 
 
-exports.getAllProducts = (req, res, next) => {
-    Product.find()
-      .then(product => res.status(200).json({ product }))
-      .catch(error => res.status(400).json({ error }));
+exports.getAllProducts = async (req, res, next) => {
+    await Product.find()
+    .populate('userId')
+    .then(product => res.status(200).json({ product }))
+    .catch(error => res.status(400).json({ error }));
    };
 
-exports.getOneProduct = (req, res, next) => {
-    Product.findOne({ _id: req.params.id })
+exports.getOneProduct = async (req, res, next) => {
+    await Product.findOne({ _id: req.params.id })
+    .populate('userId')
     .then(product => res.status(200).json({ product }))
     .catch(error => res.status(400).json({ error }));
  };
 
 exports.createOneProduct = (req, res, next) => {
     const product = new Product({
-      ...req.body
+      ...req.body,
     });
     // .save enregistre les données dans la base.
     product.save()

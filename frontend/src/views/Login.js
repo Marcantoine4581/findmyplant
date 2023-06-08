@@ -28,6 +28,8 @@ export default function Login() {
       .then(res => {
         console.log(res)
         accountService.saveToken(res.data.token)
+        accountService.saveUserId(res.data.userId)
+        accountService.saveUserName(res.data.userName)
         navigate('/')
       })
       .catch(error => console.log(error))

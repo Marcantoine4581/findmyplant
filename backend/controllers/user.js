@@ -1,30 +1,30 @@
 const User = require('../models/User');
+const Product = require('../models/Product');
 
-exports.signup = (req, res, next) => {
-    const user = new User({
-        ...req.body
-        /* userName: req.body.userName,
-        email: req.body.email,
-        password: req.body.password */
-    });
-    user.save()
-  .then(() => { res.status(201).json({message: 'Utilisateur créé !'})})
-  .catch(error => { res.status(400).json( { error })});
+exports.getAllUser = (req, res) => {
+    User.find()
+    .then(user => res.status(200).json({ user }))
+    .catch(error => res.status(400).json({ error }));
 };
 
-exports.login = (req, res, next) => {
-    User.findOne({email: req.body.email})
-    .then(user => {
-      if (user && user.email === req.body.email && user.password === req.body.password) {
-        res.status(200).json({
-          userId: user._id,
-          token: 'TOKEN'
-        });
-      } else {
-        res.status(401).json({message: 'Paire identifiant/mot de passe incorrecte'});
-      }
-    })
-    .catch(error => {
-      res.status(500).json( {error} );
-    })
+exports.getOneUser = (req, res) => {
+    User.findOne({ _id: req.params.id })
+    .then(user => res.status(200).json({ user }))
+    .catch(error => res.status(400).json({ error }));
+};
+
+exports.getAllProductByUser = (req, res) => {
+    // Rechercher l'utilisateur par ID
+  User.findOne({ _id: req.params.id })
+  .then(user => {
+    // Vérifier si l'utilisateur existe
+    if (!user) {
+      return res.status(404).json({ message: 'Utilisateur introuvable' });
+    }
+    // Récupérer tous les produits
+    Product.find({ userId: user._id })
+      .then(products => res.status(200).json({ user, products }))
+      .catch(error => res.status(400).json({ error }));
+  })
+  .catch(error => res.status(400).json({ error }));
 };

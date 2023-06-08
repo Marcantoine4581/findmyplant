@@ -1,6 +1,7 @@
 import PlantItem from './PlantItem'
 import '../styles/Products.css'
 import { useEffect, useState } from 'react';
+//import axios from 'axios';
 
 function Products() {
   const [data, setData] = useState([]);
@@ -11,6 +12,12 @@ function Products() {
       .then(response => response.json())
       .then(data => setData(data.product));
   }, []);
+
+ /*  useEffect(() => {
+    // Appel à l'API des utilisateurs
+    axios.get('http://localhost:5000/api/user')
+      .then(response => console.log(response))
+  }, []); */
 
   return (
  /*    <div>
@@ -32,7 +39,7 @@ function Products() {
       {data.map(({ _id, userId, imageUrl, plantName, price, condition }) => (
         <PlantItem
           _id={_id}
-          userId={userId}
+          userName={userId.userName}
           imageUrl={imageUrl}
           plantName={plantName}
           price={price}
