@@ -1,5 +1,5 @@
 import '../styles/Banner.css'
-import Nav from 'react-bootstrap/Nav';
+//import Nav from 'react-bootstrap/Nav';
 import { Link, useNavigate } from 'react-router-dom'
 import { accountService } from "../services/accountService";
 
@@ -25,20 +25,20 @@ function Banner() {
 				</button>
 				{(!accountService.isLogged() && (
 					<>
-						<button className='button-login'>
+						<button className='button-white'>
 							<Link to="/login" className="link-style">
 								Se connecter
 							</Link>
 						</button>
-						<button className='button-register'>
-							<Link to="/register" className="link-style">
+						<button className='button-white'>
+							<Link to="/signup" className="link-style">
 								S'enregitrer
 							</Link>
 						</button>
 					</>
 				)) || (
 					<>
-						<button className='button-account'>
+						<button className='button-white'>
 							<Link to="/register" className="link-style">
 								Mon compte
 							</Link>

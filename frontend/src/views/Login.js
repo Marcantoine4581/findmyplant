@@ -1,3 +1,4 @@
+import Banner from '../components/Banner'
 import React, { useState } from 'react';
 import '../styles/Login.css';
 import { useNavigate } from "react-router";
@@ -36,21 +37,26 @@ export default function Login() {
   };
 
   return(
-    <div className="login-wrapper">
-      <h1>Please Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <p>Email</p>
-          <input type="text" value={email} onChange={e => setEmail(e.target.value)} />
-        </label>
-        <label>
-          <p>Password</p>
-          <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-        </label>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
+    <div>
+      <Banner />
+      <div className="login-wrapper">
+        <p className='title'>Bienvenue sur FindMyPlant</p>
+        <h1 className='title'>Se connecter</h1>
+        <form onSubmit={handleSubmit}>
+          <label>
+            <p>Email</p>
+            <input type="text" value={email} onChange={e => setEmail(e.target.value)} />
+          </label>
+          <label>
+            <p>Password</p>
+            <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+          </label>
+          <div className='login-button'>
+            <button type="submit">Se connecter</button>
+          </div>
+        </form>
+      </div>
     </div>
+    
   )
 }

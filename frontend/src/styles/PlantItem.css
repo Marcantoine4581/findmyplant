@@ -1,8 +1,12 @@
-.fmp-plant-item-cover {
+.fmp-plant-item-cover-condition {
 	height: 300px;
 	width: 220px;
 	border-radius: 10px;
 	border: solid  #16AF78 1px;
+	/* overflow : hidden; */
+	background-position: center;
+	background-size: cover;
+
 }
 
 .fmp-plant-item {
@@ -17,10 +21,11 @@
 
 .fmp-condition {
 	color: #16AF78;
+	background-color: white;
 	padding-left: 10px;
 	padding-right: 10px;
     border: 1px solid #16AF78;
-    border-radius: 2%;
+    border-radius: 0%;
     position: absolute;
     display: flex;
     justify-content: center;

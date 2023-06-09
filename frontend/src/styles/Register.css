@@ -1,4 +1,4 @@
-.login-wrapper {
+.register-wrapper {
     align-items: center;
     display: flex;
     margin-left: auto;
@@ -31,7 +31,7 @@ input {
     margin-right: auto;
 }
 
-.login-button button {
+.button button {
     border: none;
     background-color: #16AF78;
     color: white;
@@ -39,5 +39,5 @@ input {
 	border: solid  #16AF78 1px;
     margin: 10px;
     padding: 5px;
-    width: 150px;
+    width: 100px;
 }

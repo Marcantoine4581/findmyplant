@@ -12,9 +12,7 @@ const userSchema = new Schema({
         postalCode: { type: String, required: false },
         country: { type: String, required: false }
     },
-    profilPicture: { type: String },
-    products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }]
-
+    profilPicture: { type: String }
 });
 
 module.exports = mongoose.model('User', userSchema);

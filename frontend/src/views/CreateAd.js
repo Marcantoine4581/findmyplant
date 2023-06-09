@@ -3,6 +3,7 @@ import Search from '../components/Search'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/CreateAd.css'
 import Container from 'react-bootstrap/Container'
 import { useState } from "react";
 import { useNavigate } from "react-router";
@@ -58,7 +59,7 @@ function CreateAd() {
     <div>
       <Banner />
       <Search />
-      <Container style={{ border: "solid #16AF78 1px" }}>
+      <Container className="createAd-wrapper">
         <h1>Déposer une annonce</h1>
       
        <Form onSubmit={onSubmit}>
@@ -76,7 +77,8 @@ function CreateAd() {
           {/* Champ nom de la plante */}
           <Form.Group controlId="plantName">
             <Form.Label>Nom de la plante</Form.Label>
-            <Form.Control 
+            <Form.Control
+              className='createAd-input' 
               type="text"
               placeholder="Nom de la plante"
               value={form.plantName}
@@ -133,7 +135,9 @@ function CreateAd() {
 
           {/* Price */}
           <InputGroup className="price">
+            <Form.Label className='text-price'>Prix :</Form.Label>
             <Form.Control
+              className='createAd-input'
               aria-label="Amount (to the nearest euro)"
               type="text"
               value={form.price}
@@ -152,6 +156,18 @@ function CreateAd() {
               onChange={(e) => updateForm({ comment: e.target.value })}
             />
           </Form.Group>
+
+          <Form.Group controlId="image">
+            <Form.Label>Lien de l'image</Form.Label>
+            <Form.Control
+              className='createAd-input' 
+              type="text"
+              placeholder="Ajouter le lien d'une image"
+              value={form.imageUrl}
+              onChange={(e) => updateForm({ imageUrl: e.target.value })}
+            />
+          </Form.Group>
+
           <Form.Group controlId="submit">
             <Button variant="primary" type="submit" style={{ marginTop: "20px" }}>
               Créer
