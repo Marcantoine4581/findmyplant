@@ -39,7 +39,7 @@ function Products() {
       />
 
       <article className='fmp-plant-list'>
-        {filteredData.map(({ _id, userId, imageUrl, plantName, price, condition }) => (
+        {filteredData.map(({ _id, userId, imageUrl, plantName, price, condition, adress }) => (
           <PlantItem
             _id={_id}
             userName={userId.userName}
@@ -47,6 +47,7 @@ function Products() {
             plantName={plantName}
             price={price}
             condition={condition}
+            adress={adress}
           />
         ))}
       </article>

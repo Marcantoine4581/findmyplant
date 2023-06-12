@@ -109,7 +109,11 @@ function CreateAd() {
                 id="donner"
                 value="Je donne"
                 checked={form.condition === "Je donne"}
-                onChange={(e) => updateForm({ condition: e.target.value })}
+                onChange={(e) => {
+                  updateForm({ condition: e.target.value });
+                  updateForm({ price: "" });
+                }}
+
               />
             </div>
             <div className="form-check form-check-inline">
@@ -121,7 +125,10 @@ function CreateAd() {
                 id="troquer"
                 value="Je troque"
                 checked={form.condition === "Je troque"}
-                onChange={(e) => updateForm({ condition: e.target.value })}
+                onChange={(e) => {
+                  updateForm({ condition: e.target.value });
+                  updateForm({ price: "" });
+                }}
               />
             </div>
           </Form.Group>        
@@ -142,6 +149,7 @@ function CreateAd() {
               type="text"
               value={form.price}
               onChange={(e) => updateForm({ price: e.target.value })}
+              disabled={form.condition !== "Je vends"} 
             />
             <InputGroup.Text>€</InputGroup.Text>
           </InputGroup>

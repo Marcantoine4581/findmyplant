@@ -1,6 +1,6 @@
 import '../styles/PlantItem.css'
 
-function PlantItem({ _id, userName, imageUrl, plantName, price, condition }) {
+function PlantItem({ _id, userName, imageUrl, plantName, price, condition, adress }) {
 	return (
 		<div key={_id} className='fmp-plant-item'>
 			{userName}
@@ -10,8 +10,11 @@ function PlantItem({ _id, userName, imageUrl, plantName, price, condition }) {
 			</div>
 			{plantName}
 			<div>
-				<p>{price} €</p>
+				<p>{price ? (
+					<span>{price} €</span>
+				) : null}</p>
 			</div>
+			{adress}
 			
 		</div>
 	)
