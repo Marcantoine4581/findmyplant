@@ -1,17 +1,24 @@
 .fmp-search {
     border-bottom: solid 1px #16AF78;
     display: flex;
-	/* justify-content: flex-start; */
-	/* flex-direction: row; */
-    justify-content: space-between;
+    height: 50px;
     width: 100%;
+    align-items: center;
+    
    
 }
 
-.fmp-search-input {
-    align-items: center;
+.search-box {
+    margin-left: auto;
+    margin-right: auto;
+
 }
 
+.fmp-search-input-input {
+    margin-bottom: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
 .button-search {
     background-color: #16AF78;
     color: white;

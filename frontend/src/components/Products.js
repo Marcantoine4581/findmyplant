@@ -1,52 +1,56 @@
 import PlantItem from './PlantItem'
 import '../styles/Products.css'
 import { useEffect, useState } from 'react';
-//import axios from 'axios';
+import Search from './Search';
 
 function Products() {
   const [data, setData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
     // Appel à l'API
     fetch('http://localhost:5000/api/products')
       .then(response => response.json())
-      .then(data => setData(data.product));
+      .then(data => {
+        setData(data.product);
+        setFilteredData(data.product);
+      });
   }, []);
 
- /*  useEffect(() => {
-    // Appel à l'API des utilisateurs
-    axios.get('http://localhost:5000/api/user')
-      .then(response => console.log(response))
-  }, []); */
+  const handleSearch = event => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleSearchButtonClick = () => {
+    const filtered = data.filter(item =>
+      item.plantName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredData(filtered);
+  };
+
 
   return (
- /*    <div>
-        {data.map(item => (
-        <div key={item._id}>
-            <p>{item.userId}</p>
-            <p>{item.plantName}</p>
-            <p>{item.condition}</p>
-            <p>{item.price}</p>
-            <p>{item.comment}</p>
-            <p>{item.createdAt}</p>
-            <p>{item.status}</p>
-            <img src={item.imageUrl} alt={item.plantName} />
-        </div>
-        ))}
-    </div> */
+    <div>
+      <Search
+        searchTerm={searchTerm}
+        handleSearch={handleSearch}
+        handleSearchButtonClick={handleSearchButtonClick}
+      />
 
-    <article className='fmp-plant-list'>
-      {data.map(({ _id, userId, imageUrl, plantName, price, condition }) => (
-        <PlantItem
-          _id={_id}
-          userName={userId.userName}
-          imageUrl={imageUrl}
-          plantName={plantName}
-          price={price}
-          condition={condition}
-        />
-      ))}
-    </article>
+      <article className='fmp-plant-list'>
+        {filteredData.map(({ _id, userId, imageUrl, plantName, price, condition }) => (
+          <PlantItem
+            _id={_id}
+            userName={userId.userName}
+            imageUrl={imageUrl}
+            plantName={plantName}
+            price={price}
+            condition={condition}
+          />
+        ))}
+      </article>
+    </div>
   );
 }
 
