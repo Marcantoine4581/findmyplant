@@ -39,7 +39,7 @@ function Banner() {
 				)) || (
 					<>
 						<button className='button-white'>
-							<Link to="/register" className="link-style">
+							<Link to="/account" className="link-style">
 								Mon compte
 							</Link>
 						</button>

@@ -5,6 +5,7 @@ import Create from '../views/Create'
 import Login from '../views/Login'
 import Signup from '../views/Register'
 import AuthenticatedRoute from './AuthenticatedRoute'
+import Account from '../views/Account';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/create" element={<Create />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/account" element={<Account />} />
         </Routes>
       </BrowserRouter>
   );

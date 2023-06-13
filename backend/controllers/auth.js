@@ -2,13 +2,19 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
 exports.signup = (req, res, next) => {
-    const user = new User({
-        ...req.body
-        /* userName: req.body.userName,
-        email: req.body.email,
-        password: req.body.password */
-    });
-    user.save()
+  const user = new User({
+    /* ...req.body */
+    userName: req.body.userName,
+    email: req.body.email,
+    password: req.body.password,
+    adress: {
+      street: '',
+      city: '',
+      postalCode: '',
+      country: ''
+    }
+  });
+  user.save()
   .then(() => { res.status(201).json({message: 'Utilisateur créé !'})})
   .catch(error => { res.status(400).json( { error })});
 };
