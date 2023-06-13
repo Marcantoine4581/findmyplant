@@ -1,6 +1,7 @@
 import Banner from '../components/Banner'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import '../styles/Account.css'
 
 export default function Account() {
     const uid = localStorage.getItem('userId');
@@ -43,9 +44,9 @@ export default function Account() {
         <Banner />
         <div className="account-wrapper">
             <h1 className='title'>Mes informations</h1>
-            <form onSubmit={onSubmit}>
-                <label>
-                    Nom de l'utilisateur : 
+            <form className='account-form' onSubmit={onSubmit}>
+                <label className='label-input'>
+                    Nom de l'utilisateur :
                     <input 
                         type="text"
                         value={data.userName}
@@ -77,7 +78,7 @@ export default function Account() {
                     Pays :
                     <input type="text" value={data.adress.country} onChange={e => setData({ ...data, adress: { ...data.adress, country: e.target.value } })} />
                 </label>
-                <div className='login-button'>
+                <div className='account-button'>
                     <button type="submit">Mettre à jour</button>
                 </div>
             </form>
