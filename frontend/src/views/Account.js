@@ -78,7 +78,7 @@ export default function Account() {
                     <input type="text" value={data.adress.country} onChange={e => setData({ ...data, adress: { ...data.adress, country: e.target.value } })} />
                 </label>
                 <div className='login-button'>
-                    <button type="submit">Confirmer</button>
+                    <button type="submit">Mettre à jour</button>
                 </div>
             </form>
             {message && <p>{message}</p>} 
