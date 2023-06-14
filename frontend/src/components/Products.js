@@ -1,6 +1,7 @@
 import PlantItem from './PlantItem'
 import '../styles/Products.css'
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Search from './Search';
 
 function Products() {
@@ -13,8 +14,9 @@ function Products() {
     fetch('http://localhost:5000/api/products')
       .then(response => response.json())
       .then(data => {
-        setData(data.product);
-        setFilteredData(data.product);
+        const dataStatusTrue = data.product.filter(item => item.status === true);
+        setData(dataStatusTrue);
+        setFilteredData(dataStatusTrue);
       });
   }, []);
 
@@ -40,16 +42,18 @@ function Products() {
 
       <article className='fmp-plant-list'>
         {filteredData.map(({ _id, userId, imageUrl, plantName, price, condition }) => (
-          <PlantItem
-            _id={_id}
-            userName={userId.userName}
-            imageUrl={imageUrl}
-            plantName={plantName}
-            price={price}
-            condition={condition}
-            city={userId.adress.city}
-            postalCode={userId.adress.postalCode}
-          />
+          <Link to={`/product/${_id}`} key={_id}>
+            <PlantItem
+              _id={_id}
+              userName={userId.userName}
+              imageUrl={imageUrl}
+              plantName={plantName}
+              price={price}
+              condition={condition}
+              city={userId.adress.city}
+              postalCode={userId.adress.postalCode}
+            />
+          </Link>
         ))}
       </article>
     </div>

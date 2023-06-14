@@ -6,6 +6,8 @@ import Login from '../views/Login'
 import Signup from '../views/Register'
 import AuthenticatedRoute from './AuthenticatedRoute'
 import Account from '../views/Account';
+import ProductDetail from '../views/ProductDetail';
+import AccountProducts from '../views/AccountProducts';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/account-annonces" element={<AccountProducts />} />
         </Routes>
       </BrowserRouter>
   );

@@ -1,0 +1,32 @@
+.plant-detail-cover {
+    height: 400px;
+	width: 500px;
+	border-radius: 10px;
+	border: solid  #16AF78 1px;
+	/* overflow : hidden; */
+	background-position: center;
+	background-size: cover;
+}
+
+.plant-detail-wrapper {
+    max-width: 800px;
+    display: flex;
+    border: solid #16AF78 1px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    justify-content: space-between;
+}
+
+.plant-detail-contact {
+    display: flex;
+    flex-direction: column;
+}
+
+.plant-detail-name-condition {
+    display: flex;
+    justify-content: space-between;
+}

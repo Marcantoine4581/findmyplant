@@ -43,6 +43,11 @@ function Banner() {
 								Mon compte
 							</Link>
 						</button>
+						<button className='button-white'>
+							<Link to="/account-annonces" className="link-style">
+								Mes annonces
+							</Link>
+						</button>
 						<button className='button-logout' onClick={logout}>
 							Déconnection
 						</button>	

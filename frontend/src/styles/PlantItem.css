@@ -17,20 +17,22 @@
 	justify-content: top;
 	flex-direction: column;
 	text-transform: capitalize;
+	min-height: 400px;
 }
 
 .fmp-condition {
 	color: #16AF78;
+	position: absolute;
 	background-color: white;
 	padding-left: 10px;
 	padding-right: 10px;
     border: 1px solid #16AF78;
     border-radius: 0%;
-    position: absolute;
+    
     display: flex;
     justify-content: center;
     align-items: center;
-    bottom: 12%;
+    top: 76%;
     right: 7%;
 }
 
