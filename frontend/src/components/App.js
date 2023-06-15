@@ -8,6 +8,7 @@ import AuthenticatedRoute from './AuthenticatedRoute'
 import Account from '../views/Account';
 import ProductDetail from '../views/ProductDetail';
 import AccountProducts from '../views/AccountProducts';
+import ModifyAd from '../views/ModifyAd';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/account" element={<Account />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/account-annonces" element={<AccountProducts />} />
+          <Route path="/user/:id/modify-ad/:id" element={<ModifyAd />} />
         </Routes>
       </BrowserRouter>
   );

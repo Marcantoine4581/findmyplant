@@ -1,0 +1,68 @@
+.accountProducts-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.accountProducts {
+    list-style-type: none;
+	padding: 32px;
+	display: flex;
+	flex-direction: column;
+	max-width: 800px;
+}
+
+.accountProducts-details {
+    display: flex;
+    gap: 40px;
+    border-bottom:#16AF78 solid 2px;
+    margin-bottom: 10px;
+}
+
+.plant-cover {
+    height: 150px;
+    width: 100px;
+    background-position: center;
+	background-size: cover;
+    border-radius: 10px;
+	border: solid  #16AF78 1px;
+    margin-bottom: 10px;
+}
+
+.accountProducts-details-text {
+    display: flex;
+	flex-direction: column;
+    justify-content: center;
+}
+
+.accountProducts-button {
+    display: flex;
+	flex-direction: column;
+    justify-content: center;
+}
+
+.accountProducts-button button {
+    border: none;
+    
+    color: white;
+    border-radius: 5px;
+	
+    margin: 10px;
+    padding: 5px;
+    width: 150px;
+}
+
+.modify {
+    background-color: #16AF78;
+    border: solid  #16AF78 1px;
+}
+
+.delete {
+    background-color: #af1616;
+    border: solid #af1616 1px;
+}
+
+.accountProducts-details form {
+    justify-content: center;
+}
