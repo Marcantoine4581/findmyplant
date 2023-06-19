@@ -6,6 +6,7 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 require('dotenv').config()
 const Product = require('./models/Product');
+const path = require('path');
 
 mongoose.connect(process.env.DB_URL,
   { useNewUrlParser: true,
@@ -68,6 +69,8 @@ app.use('/api/plants', (req, res) => {
 app.use('/api/products', productRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
+app.use('/images', express.static(path.join(__dirname, 'images')));
+
 
 /* app.post('/api/products/', (req, res, next) => {
 const product = new Product({

@@ -1,10 +1,10 @@
-import Banner from '../components/Banner'
+import NavBar from '../components/NavBar'
 import Products from '../components/Products'
 
 function Home() {
   return (
     <div>
-      <Banner />
+      <NavBar />
       <Products />
     </div>
   );

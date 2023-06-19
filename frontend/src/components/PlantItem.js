@@ -10,7 +10,7 @@ function PlantItem({ _id, userName, imageUrl, plantName, price, condition, city,
 				<p className='fmp-condition'>{condition}</p>
 			</div>
 			{plantName}
-			<div>
+			<div className='fmp-price'>
 				{price ? (
 					<span>{price} €</span>
 				) : null}

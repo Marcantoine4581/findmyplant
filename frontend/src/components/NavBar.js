@@ -1,9 +1,9 @@
-import '../styles/Banner.css'
+import '../styles/NavBar.css'
 //import Nav from 'react-bootstrap/Nav';
 import { Link, useNavigate } from 'react-router-dom'
 import { accountService } from "../services/accountService";
 
-function Banner() {
+function NavBar() {
 	const title = 'FindMyPlant'
 	let navigate = useNavigate()
 	const logout = () => {
@@ -11,7 +11,7 @@ function Banner() {
 		navigate('/')
 	}
 	return (
-		<div className='fmp-banner'>
+		<div className='fmp-NavBar'>
 			<h1 className='fmp-title'>
 				<Link to="/" className="link-style">
 					{title}
@@ -58,4 +58,4 @@ function Banner() {
 	);
 }
 
-export default Banner
+export default NavBar

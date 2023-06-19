@@ -1,5 +1,4 @@
-import Banner from '../components/Banner'
-import Search from '../components/Search'
+import NavBar from '../components/NavBar'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,48 +18,60 @@ function CreateAd() {
     condition: "",
     price: "",
     comment: "",
-    imageUrl: "",
+    image: null
   });
   const navigate = useNavigate();
-  
-  
-  
-   // These methods will update the state properties.
+
+  // These methods will update the state properties.
   function updateForm(value) {
     return setForm((prev) => {
       return { ...prev, ...value };
     });
   }
 
-   // This function will handle the submission.
+  function handleImageUpload(e) {
+    const file = e.target.files[0];
+    /* const formData = new FormData(); */
+    updateForm({ image: file });
+  };
+
+
+  // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
 
-     // When a post request is sent to the create url, we'll add a new record to the database.
-     const newProduct = { ...form };
- 
-     await fetch("http://localhost:5000/api/products", {
-       method: "POST",
-       headers: {
-         "Content-Type": "application/json",
-       },
-       body: JSON.stringify(newProduct),
-     })
-     .catch(error => {
-       window.alert(error);
-       return;
-     });
-   
-     setForm({ userId: "", plantName: "", condition: "", price: "", comment: "", imageUrl: "" });
-     navigate("/");
-   }
+    // When a post request is sent to the create url, we'll add a new record to the database.
+    /* const newProduct = { ...form }; */
+
+    const formData = new FormData();
+    formData.append("userId", form.userId);
+    formData.append("plantName", form.plantName);
+    formData.append("condition", form.condition);
+    formData.append("price", form.price);
+    formData.append("comment", form.comment);
+    formData.append("image", form.image);
+
+    let response = await fetch("http://localhost:5000/api/products", {
+      method: "POST",
+      body: formData
+    })
+      .catch(error => {
+        window.alert(error);
+        return;
+      });
+
+    let result = await response.json();
+    alert(result.message);
+
+    setForm({ userId: "", plantName: "", condition: "", price: "", comment: "", imageUrl: "" });
+    navigate("/");
+  }
 
   return (
     <div>
-      <Banner />
-      <Search />
+      <NavBar />
       <Container className="createAd-wrapper">
-        <h1>Déposer une annonce</h1>
+        <h1 className='title'>Déposer une annonce</h1>
       
        <Form onSubmit={onSubmit}>
         
@@ -111,7 +122,7 @@ function CreateAd() {
                 checked={form.condition === "Je donne"}
                 onChange={(e) => {
                   updateForm({ condition: e.target.value });
-                  updateForm({ price: "" });
+                  updateForm({ price: "0" });
                 }}
 
               />
@@ -127,7 +138,7 @@ function CreateAd() {
                 checked={form.condition === "Je troque"}
                 onChange={(e) => {
                   updateForm({ condition: e.target.value });
-                  updateForm({ price: "" });
+                  updateForm({ price: "0" });
                 }}
               />
             </div>
@@ -165,7 +176,7 @@ function CreateAd() {
             />
           </Form.Group>
 
-          <Form.Group controlId="image">
+         {/*  <Form.Group controlId="image">
             <Form.Label>Lien de l'image</Form.Label>
             <Form.Control
               className='createAd-input' 
@@ -173,6 +184,16 @@ function CreateAd() {
               placeholder="Ajouter le lien d'une image"
               value={form.imageUrl}
               onChange={(e) => updateForm({ imageUrl: e.target.value })}
+            />
+          </Form.Group> */}
+
+          <Form.Group controlId="image">
+            <Form.Label>Image</Form.Label>
+            <Form.Control
+              className="createAd-input"
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
             />
           </Form.Group>
 

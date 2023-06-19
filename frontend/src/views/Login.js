@@ -1,4 +1,4 @@
-import Banner from '../components/Banner'
+import NavBar from '../components/NavBar'
 import React, { useState } from 'react';
 import '../styles/Login.css';
 import { useNavigate } from "react-router";
@@ -20,6 +20,7 @@ import { accountService } from '../services/accountService';
 export default function Login() {
   const [email, setEmail] = useState('motai@gmail.com');
   const [password, setPassword] = useState('123');
+  const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -27,18 +28,20 @@ export default function Login() {
     console.log(email, password)
     axios.post('http://localhost:5000/api/auth/login', {email, password})
       .then(res => {
-        console.log(res)
         accountService.saveToken(res.data.token)
         accountService.saveUserId(res.data.userId)
         accountService.saveUserName(res.data.userName)
         navigate('/')
       })
-      .catch(error => console.log(error))
+      .catch(error => {
+        console.log(error)
+        setMessage(error.response.data.message)
+      })
   };
 
   return(
     <div>
-      <Banner />
+      <NavBar />
       <div className="login-wrapper">
         <p className='title'>Bienvenue sur FindMyPlant</p>
         <h1 className='title'>Se connecter</h1>
@@ -51,6 +54,7 @@ export default function Login() {
             <p>Password</p>
             <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
           </label>
+          {message && <p>{message}</p>}
           <div className='login-button'>
             <button type="submit">Se connecter</button>
           </div>

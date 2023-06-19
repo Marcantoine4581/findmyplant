@@ -1,4 +1,4 @@
-import Banner from '../components/Banner';
+import NavBar from '../components/NavBar';
 import React, { useState } from 'react';
 import '../styles/Register.css';
 import { useNavigate } from "react-router";
@@ -33,7 +33,7 @@ export default function Signup() {
 
   return(
     <div>
-      <Banner />
+      <NavBar />
       <div className="register-wrapper">
         <p className='title'>Rejoins les passionnés de plantes sur FindMyPlant</p>
         <h1 className='title'>Créer un compte</h1>

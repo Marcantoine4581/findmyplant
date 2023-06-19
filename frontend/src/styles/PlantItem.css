@@ -1,3 +1,8 @@
+.fmp-plant-item-userName {
+	text-transform: capitalize;
+	color: #16AF78;
+	font-weight: bold;
+}
 .fmp-plant-item-cover-condition {
 	height: 300px;
 	width: 220px;
@@ -16,7 +21,6 @@
 	align-items: flex-start;
 	justify-content: top;
 	flex-direction: column;
-	text-transform: capitalize;
 	min-height: 400px;
 }
 
@@ -28,7 +32,6 @@
 	padding-right: 10px;
     border: 1px solid #16AF78;
     border-radius: 0%;
-    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,4 +41,9 @@
 
 .fmp-plant-item-city {
 	font-size: 12px;
+	text-transform: capitalize;
+}
+
+.fmp-price {
+	color: #16AF78;
 }

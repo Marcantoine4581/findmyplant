@@ -1,5 +1,5 @@
 import '../styles/AccountProducts.css'
-import Banner from '../components/Banner'
+import NavBar from '../components/NavBar'
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
@@ -58,9 +58,9 @@ function AccountProducts() {
 
   return (
     <div>
-      <Banner />
+      <NavBar />
       <div className='accountProducts-wrapper'>
-        <h1 className='accountTitle'>Mes annonces</h1>
+        <h1 className="title">Mes annonces</h1>
         <article className='accountProducts'>
           {data.map(({ _id, imageUrl, plantName, price, condition, status, createAt }, index) => (
             <div className='accountProducts-details' key={`${_id}-${index}`}>

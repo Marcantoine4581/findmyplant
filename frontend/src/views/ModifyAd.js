@@ -1,4 +1,4 @@
-import Banner from '../components/Banner'
+import NavBar from '../components/NavBar'
 import Search from '../components/Search'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -14,10 +14,10 @@ import axios from 'axios';
 
 function ModifyAd() {
     const { id } = useParams()
-  const uid = localStorage.getItem('userId');
+  /* const uid = localStorage.getItem('userId'); */
   const [message, setMessage] = useState('');
   const [form, setForm] = useState({
-    userId: uid,
+    userId: "",
     plantName: "",
     condition: "",
     price: "",
@@ -47,6 +47,9 @@ function ModifyAd() {
 
   async function onSubmit(e) {
     e.preventDefault()
+    if (form.price === null) {
+      updateForm({ price: "0" });
+    }
     await axios.put('http://localhost:5000/api/products/' + id, form)
         .then(res => {
             console.log(res.data)
@@ -63,7 +66,7 @@ function ModifyAd() {
 
   return (
     <div>
-      <Banner />
+      <NavBar />
       <Search />
       <Container className="createAd-wrapper">
         <h1>Modifier une annonce</h1>
@@ -107,7 +110,7 @@ function ModifyAd() {
                 checked={form.condition === "Je donne"}
                 onChange={(e) => {
                   updateForm({ condition: e.target.value });
-                  updateForm({ price: "" });
+                  updateForm({ price: "0" });
                 }}
 
               />
@@ -123,7 +126,7 @@ function ModifyAd() {
                 checked={form.condition === "Je troque"}
                 onChange={(e) => {
                   updateForm({ condition: e.target.value });
-                  updateForm({ price: "" });
+                  updateForm({ price: "0" });
                 }}
               />
             </div>

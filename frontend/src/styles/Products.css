@@ -6,4 +6,14 @@
 	max-width: 800px;
 	margin-left: auto;
     margin-right: auto;
+	
+}
+
+.fmp-plant-list a {
+	text-decoration: none;
+	color: black;
+}
+
+.fmp-plant-list a:hover {
+	color: black;
 }

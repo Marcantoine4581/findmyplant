@@ -1,5 +1,4 @@
 import { useForm } from 'react-hook-form';
-import Banner from '../components/Banner';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -40,7 +39,6 @@ function Create() {
 
   return (
     <div>
-      <Banner />
       <Container style={{ border: 'solid #16AF78 1px' }}>
         <h1>Déposer une annonce</h1>
 
