@@ -27,7 +27,12 @@ exports.createOneProduct = (req, res, next) => {
 };
 
 exports.modifyProduct = (req, res, next) => {
-    Product.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
+    const newProduct = req.file ? {
+        ...req.body,
+        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    } : { ...req.body };
+    console.log(newProduct);
+    Product.updateOne({ _id: req.params.id }, { ...newProduct, _id: req.params.id })
     .then(() => res.status(200).json({ message: 'Modified!'}))
     .catch(error => res.status(400).json({ error: error }));
 };

@@ -14,7 +14,7 @@ import axios from 'axios';
 
 function ModifyAd() {
     const { id } = useParams()
-  /* const uid = localStorage.getItem('userId'); */
+  const uid = localStorage.getItem('userId');
   const [message, setMessage] = useState('');
   const [form, setForm] = useState({
     userId: "",
@@ -22,7 +22,7 @@ function ModifyAd() {
     condition: "",
     price: "",
     comment: "",
-    imageUrl: "",
+    image: null
   });
   const navigate = useNavigate();
 
@@ -45,14 +45,29 @@ function ModifyAd() {
     });
   }
 
+  function handleImageUpload(e) {
+    const file = e.target.files[0];
+    updateForm({ image: file });
+  };
+
   async function onSubmit(e) {
     e.preventDefault()
     if (form.price === null) {
       updateForm({ price: "0" });
     }
-    await axios.put('http://localhost:5000/api/products/' + id, form)
+    const formData = new FormData();
+    formData.append("userId", uid);
+    formData.append("plantName", form.plantName);
+    formData.append("condition", form.condition);
+    formData.append("price", form.price);
+    formData.append("comment", form.comment);
+    formData.append("image", form.image);
+
+    console.log(formData.get("image"));
+
+    await axios.put('http://localhost:5000/api/products/' + id, formData)
         .then(res => {
-            console.log(res.data)
+            console.log(res)
             console.log('Mise à jour réussie !');
             setMessage(res.data.message);
         })
@@ -164,7 +179,7 @@ function ModifyAd() {
             />
           </Form.Group>
 
-          <Form.Group controlId="image">
+          {/* <Form.Group controlId="image">
             <Form.Label>Lien de l'image</Form.Label>
             <Form.Control
               className='createAd-input' 
@@ -172,6 +187,16 @@ function ModifyAd() {
               placeholder="Ajouter le lien d'une image"
               value={form.imageUrl}
               onChange={(e) => updateForm({ imageUrl: e.target.value })}
+            />
+          </Form.Group> */}
+
+          <Form.Group controlId="image">
+            <Form.Label>Image</Form.Label>
+            <Form.Control
+              className="createAd-input"
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
             />
           </Form.Group>
 
