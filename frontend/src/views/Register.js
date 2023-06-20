@@ -1,6 +1,7 @@
 import NavBar from '../components/NavBar';
 import React, { useState } from 'react';
 import '../styles/Register.css';
+import '../styles/ErrorMessage.css';
 import { useNavigate } from "react-router";
 import axios from 'axios';
 
@@ -8,6 +9,9 @@ export default function Signup() {
   /* const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [userName, setUsername] = useState(''); */
+  const [password2, setPassword2] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [emailError, setEmailError] = useState('');
   const navigate = useNavigate();
   const [data, setData] = useState({
     userName: '',
@@ -23,12 +27,23 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:5000/api/auth/signup', data)
+
+    if (data.password === password2) {
+      axios.post('http://localhost:5000/api/auth/signup', data)
       .then(res => {
         console.log(res)
+        
         navigate('/')
       })
-      .catch(error => console.log(error))
+      .catch(error => {
+        console.log(error);
+        setEmailError(error.response.data.message)
+      })
+    } else {
+      setPasswordError("Les mots de passe ne correspondent pas");
+    }
+
+    
   };
 
   return(
@@ -46,10 +61,17 @@ export default function Signup() {
             <p>Email</p>
             <input type="text" value={data.email} onChange={e => setData({...data, email: e.target.value})} />
           </label>
+            {emailError && <p className='errorMessage'>{emailError}</p>}
           <label>
-            <p>Password</p>
+            <p>Mot de passe</p>
             <input type="password" value={data.password} onChange={e => setData({...data, password: e.target.value})} />
           </label>
+          {passwordError && <p className='errorMessage'>{passwordError}</p>}
+          <label>
+            <p>Confirmation du mot de passe</p>
+            <input type="password" value={password2} onChange={e => setPassword2(e.target.value)} />
+          </label>
+          {passwordError && <p className='errorMessage'>{passwordError}</p>}
           <div className='button'>
             <button type="submit">Continuer</button>
           </div>

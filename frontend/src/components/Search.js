@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/Search.css'
 
-function Search({ searchTerm, handleSearch, handleSearchButtonClick }) {
+function Search({ searchTerm, handleSearch, searchCity, handleSearchCity, handleSearchButtonClick }) {
 	return (
 		<div className='fmp-search'>
 			<div className='search-box'>
@@ -15,7 +15,13 @@ function Search({ searchTerm, handleSearch, handleSearchButtonClick }) {
 					/>
 				</label>
 				<label className='fmp-search-input'>
-					<input className='fmp-search-input-input' type="text"/>
+					<input 
+						className='fmp-search-input-input'
+						type="text"
+						value={searchCity}
+						placeholder="Rechercher une ville"
+						onChange={handleSearchCity}
+					/>
 				</label>
 				<button className='button-search' onClick={handleSearchButtonClick}>
 					Rechercher

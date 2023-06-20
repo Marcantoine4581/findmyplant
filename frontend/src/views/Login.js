@@ -1,6 +1,7 @@
 import NavBar from '../components/NavBar'
 import React, { useState } from 'react';
 import '../styles/Login.css';
+import '../styles/ErrorMessage.css';
 import { useNavigate } from "react-router";
 import axios from 'axios';
 
@@ -26,11 +27,11 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(email, password)
-    axios.post('http://localhost:5000/api/auth/login', {email, password})
+    
+      axios.post('http://localhost:5000/api/auth/login', {email, password})
       .then(res => {
         accountService.saveToken(res.data.token)
         accountService.saveUserId(res.data.userId)
-        accountService.saveUserName(res.data.userName)
         navigate('/')
       })
       .catch(error => {
@@ -54,7 +55,7 @@ export default function Login() {
             <p>Password</p>
             <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
           </label>
-          {message && <p>{message}</p>}
+          {message && <p className='errorMessage'>{message}</p>}
           <div className='login-button'>
             <button type="submit">Se connecter</button>
           </div>

@@ -7,6 +7,7 @@ import Search from './Search';
 function Products() {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [searchCity, setSearchCity] = useState('');
   const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
@@ -24,10 +25,25 @@ function Products() {
     setSearchTerm(event.target.value);
   };
 
+  const handleSearchCity = event => {
+    setSearchCity(event.target.value);
+  };
+
   const handleSearchButtonClick = () => {
-    const filtered = data.filter(item =>
-      item.plantName.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const filtered = data.filter(item => {
+      if (searchTerm && searchCity) {
+        return (
+          item.plantName.toLowerCase().includes(searchTerm.toLowerCase()) &&
+          item.userId.adress.city.toLowerCase().includes(searchCity.toLowerCase())
+        );
+      } else if (searchTerm) {
+        return item.plantName.toLowerCase().includes(searchTerm.toLowerCase());
+      } else if (searchCity) {
+        return item.userId.adress.city.toLowerCase().includes(searchCity.toLowerCase());
+      }
+      return true; // if no criteria specified, return all elements.
+    });
+  
     setFilteredData(filtered);
   };
 
@@ -37,6 +53,8 @@ function Products() {
       <Search
         searchTerm={searchTerm}
         handleSearch={handleSearch}
+        searchCity={searchCity}
+        handleSearchCity={handleSearchCity}
         handleSearchButtonClick={handleSearchButtonClick}
       />
 

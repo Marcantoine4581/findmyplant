@@ -51,7 +51,7 @@ function CreateAd() {
     formData.append("comment", form.comment);
     formData.append("image", form.image);
 
-    let response = await fetch("http://localhost:5000/api/products", {
+    await fetch("http://localhost:5000/api/products", {
       method: "POST",
       body: formData
     })
@@ -59,10 +59,7 @@ function CreateAd() {
         window.alert(error);
         return;
       });
-
-    let result = await response.json();
-    alert(result.message);
-
+    
     setForm({ userId: "", plantName: "", condition: "", price: "", comment: "", imageUrl: "" });
     navigate("/");
   }
