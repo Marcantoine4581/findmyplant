@@ -7,6 +7,8 @@ import axios from 'axios';
 
 
 export default function Signup() {
+  const apiUrl = process.env.REACT_APP_API_URL;
+  const endpointauth = process.env.REACT_APP_END_POINT_AUTH;
   const [password2, setPassword2] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -42,7 +44,7 @@ export default function Signup() {
     setData(updatedData);
 
     if (data.password === password2) {
-      axios.post('http://localhost:5000/api/auth/signup', updatedData)
+      axios.post(`${apiUrl}${endpointauth}signup`, updatedData)
       .then(res => {
         console.log(res)
         

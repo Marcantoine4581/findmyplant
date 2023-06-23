@@ -13,7 +13,9 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 function ModifyAd() {
-    const { id } = useParams()
+  const apiUrl = process.env.REACT_APP_API_URL;
+  const endpointproduct = process.env.REACT_APP_END_POINT_PRODUCTS;
+  const { id } = useParams()
   const uid = localStorage.getItem('userId');
   const [message, setMessage] = useState('');
   const [form, setForm] = useState({
@@ -27,7 +29,7 @@ function ModifyAd() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/products/' + id )
+    axios.get(`${apiUrl}${endpointproduct}` + id )
         .then(res => {
             console.log(res.data.product)
             setForm(res.data.product)
@@ -55,6 +57,7 @@ function ModifyAd() {
     if (form.price === null) {
       updateForm({ price: "0" });
     }
+    console.log(form.plantName);
     const formData = new FormData();
     formData.append("userId", uid);
     formData.append("plantName", form.plantName);
@@ -65,7 +68,7 @@ function ModifyAd() {
 
     console.log(formData.get("image"));
 
-    await axios.put('http://localhost:5000/api/products/' + id, formData)
+    await axios.put(`${apiUrl}${endpointproduct}` + id, formData)
         .then(res => {
             console.log(res)
             console.log('Mise à jour réussie !');

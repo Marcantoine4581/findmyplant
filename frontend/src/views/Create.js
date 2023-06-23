@@ -12,7 +12,7 @@ function Create() {
 
   const onSubmit = async (data) => {
     // When a post request is sent to the create url, we'll add a new record to the database.
-    await fetch('http://localhost:5000/api/products', {
+    await fetch('https://findmyplant-backend.onrender.com/api/products', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

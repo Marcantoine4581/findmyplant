@@ -19,6 +19,8 @@ import { accountService } from '../services/accountService';
 } */
 
 export default function Login() {
+  const apiUrl = process.env.REACT_APP_API_URL;
+  const endpointauth = process.env.REACT_APP_END_POINT_AUTH;
   const [email, setEmail] = useState('motai@gmail.com');
   const [password, setPassword] = useState('123');
   const [message, setMessage] = useState('');
@@ -28,7 +30,7 @@ export default function Login() {
     e.preventDefault();
     console.log(email, password)
     
-      axios.post('http://localhost:5000/api/auth/login', {email, password})
+      axios.post(`${apiUrl}${endpointauth}login`, {email, password})
       .then(res => {
         accountService.saveToken(res.data.token)
         accountService.saveUserId(res.data.userId)

@@ -11,6 +11,8 @@ import SearchPlant from '../components/SearchPlant';
 
 
 function CreateAd() {
+  const apiUrl = process.env.REACT_APP_API_URL;
+  const endpointproduct = process.env.REACT_APP_END_POINT_PRODUCTS;
   const uid = localStorage.getItem('userId');
   const [form, setForm] = useState({
     userId: uid,
@@ -42,7 +44,6 @@ function CreateAd() {
 
     // When a post request is sent to the create url, we'll add a new record to the database.
     /* const newProduct = { ...form }; */
-
     const formData = new FormData();
     formData.append("userId", form.userId);
     formData.append("plantName", form.plantName);
@@ -51,7 +52,7 @@ function CreateAd() {
     formData.append("comment", form.comment);
     formData.append("image", form.image);
 
-    await fetch("http://localhost:5000/api/products", {
+    await fetch(`${apiUrl}${endpointproduct}`, {
       method: "POST",
       body: formData
     })

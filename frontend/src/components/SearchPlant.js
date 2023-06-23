@@ -14,12 +14,13 @@ function SearchPlant({ searchTerm, handleSearch }) {
 
 	const handleDataItemClick = (nom) => {
 		setSelectedItem(nom); // Mettre à jour l'état avec la valeur du dataItem sélectionné
+		handleSearch({ plantName: nom });
         setShowResults(false);
 	};
 
 	const handleClearSelectedItem = () => {
 		setSelectedItem('');
-		handleSearch('');
+		handleSearch({ plantName: '' });
         setShowResults(true);
 	};
 
@@ -32,8 +33,8 @@ function SearchPlant({ searchTerm, handleSearch }) {
 	};
 
 	useEffect(() => {
-		console.log(showResults);
-	}, [showResults]);
+		console.log(selectedItem);
+	}, [selectedItem]);
 
 
 	useEffect(() => {

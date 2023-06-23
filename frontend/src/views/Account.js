@@ -4,6 +4,8 @@ import axios from 'axios';
 import '../styles/Account.css'
 
 export default function Account() {
+    const apiUrl = process.env.REACT_APP_API_URL;
+    const endpoint = process.env.REACT_APP_END_POINT_USER;
     const uid = localStorage.getItem('userId');
     const [message, setMessage] = useState('');
     const [data, setData] = useState({
@@ -19,7 +21,7 @@ export default function Account() {
     });
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/user/' + uid)
+        axios.get(`${apiUrl}${endpoint}` + uid)
             .then(res => {
                 console.log(res.data.user)
                 setData(res.data.user)
@@ -30,7 +32,7 @@ export default function Account() {
 
     function onSubmit(e) {
         e.preventDefault()
-        axios.put('http://localhost:5000/api/user/' + uid, data)
+        axios.put(`${apiUrl}${endpoint}` + uid, data)
             .then(res => {
                 console.log(res.data)
                 console.log('Mise à jour réussie !');

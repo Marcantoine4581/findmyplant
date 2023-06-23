@@ -7,13 +7,16 @@ import axios from 'axios';
 import moment from 'moment';
 
 function AccountProducts() {
+  const apiUrl = process.env.REACT_APP_API_URL;
+  const endpointproduct = process.env.REACT_APP_END_POINT_PRODUCTS;
+  const endpointuser = process.env.REACT_APP_END_POINT_USER;
   const [data, setData] = useState([]);
   //const [updatedData, setUpdatedData] = useState([]);
   const uid = localStorage.getItem('userId');
 
   useEffect(() => {
     // Appel à l'API
-    fetch(`http://localhost:5000/api/user/${uid}/products`)
+    fetch(`${apiUrl}${endpointuser}${uid}/products`)
       .then(response => response.json())
       .then(data => {
         console.log(data.products);
@@ -22,7 +25,7 @@ function AccountProducts() {
   }, [uid]);
 
   const handleDeleteProduct = (productId) => {
-    axios.delete(`http://localhost:5000/api/products/${productId}`)
+    axios.delete(`${apiUrl}${endpointproduct}${productId}`)
       .then((response) => {
         console.log(response);
         const updatedData = data.filter((product) => product._id !== productId);
@@ -39,7 +42,7 @@ function AccountProducts() {
     const updatedAvailability = !updatedProduct.status;
     console.log('updatedAvailability = ', updatedAvailability);
 
-    axios.put(`http://localhost:5000/api/products/${productId}`, { status: updatedAvailability })
+    axios.put(`${apiUrl}${endpointproduct}${productId}`, { status: updatedAvailability })
       .then((response) => {
         console.log(response);
         const updatedData = data.map((product) => {

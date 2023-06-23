@@ -6,6 +6,8 @@ import Search from './Search';
 import PlantData from '../noms.json';
 
 function Products() {
+  const apiUrl = process.env.REACT_APP_API_URL;
+  const endpoint = process.env.REACT_APP_END_POINT_PRODUCTS;
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchCity, setSearchCity] = useState('');
@@ -14,7 +16,7 @@ function Products() {
 
   useEffect(() => {
     // Appel à l'API
-    fetch('http://localhost:5000/api/products')
+    fetch(`${apiUrl}${endpoint}`)
       .then(response => response.json())
       .then(data => {
         const dataStatusTrue = data.product.filter(item => item.status === true);

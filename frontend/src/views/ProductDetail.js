@@ -5,6 +5,8 @@ import axios from 'axios';
 import '../styles/ProductDetail.css'
 
 export default function ProductDetail() {
+  const apiUrl = process.env.REACT_APP_API_URL;
+  const endpointproduct = process.env.REACT_APP_END_POINT_PRODUCTS;
   const { id } = useParams()
   const [data, setData] = useState('');
   const [mailVisible, setMailVisible] = useState(false);
@@ -14,7 +16,7 @@ export default function ProductDetail() {
   };
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/products/' + id)
+    axios.get(`${apiUrl}${endpointproduct}` + id)
       .then(res => {
         console.log(res.data.product)
         setData(res.data.product)
