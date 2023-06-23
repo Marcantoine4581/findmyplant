@@ -1,17 +1,13 @@
 .fmp-search {
-    border-bottom: solid 1px #16AF78;
     display: flex;
     height: 50px;
     width: 100%;
     align-items: center;
-    
-   
 }
 
 .search-box {
     margin-left: auto;
     margin-right: auto;
-
 }
 
 .fmp-search-input-input {
@@ -19,6 +15,23 @@
     margin-left: 5px;
     margin-right: 5px;
 }
+
+.dataResult {
+    margin-top: 5px;
+    position: absolute;
+    z-index: 1;
+    width: 250px;
+    height: 200px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.hide-results {
+    display: none;
+  }
+
 .button-search {
     background-color: #16AF78;
     color: white;
@@ -26,4 +39,12 @@
 	border: solid  #16AF78 1px;
     margin: 10px;
     padding: 5px;
+}
+
+.clear-selection, .validation {
+    border: solid  #16AF78 1px;
+    background-color: #16AF78;
+    color: white;
+    border-radius: 5px;
+    margin-top: 2px;
 }

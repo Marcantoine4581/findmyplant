@@ -7,8 +7,18 @@
     padding-bottom: 20px;
 }
 
-.createAd-wrapper h1 {
+.createdAd-title {
+    display: flex;
     color: #16AF78;
+    justify-content: center;
+}
+
+.createAd-group {
+    margin-top: 10px;
+}
+
+.form-label {
+    font-weight: bold;
 }
 
 .price {

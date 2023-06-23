@@ -3,12 +3,14 @@ import '../styles/Products.css'
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Search from './Search';
+import PlantData from '../noms.json';
 
 function Products() {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchCity, setSearchCity] = useState('');
   const [filteredData, setFilteredData] = useState([]);
+
 
   useEffect(() => {
     // Appel à l'API
@@ -52,10 +54,12 @@ function Products() {
     <div>
       <Search
         searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
         handleSearch={handleSearch}
         searchCity={searchCity}
         handleSearchCity={handleSearchCity}
         handleSearchButtonClick={handleSearchButtonClick}
+        plantData={PlantData}
       />
 
       <article className='fmp-plant-list'>

@@ -5,13 +5,12 @@ import '../styles/ErrorMessage.css';
 import { useNavigate } from "react-router";
 import axios from 'axios';
 
+
 export default function Signup() {
-  /* const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [userName, setUsername] = useState(''); */
   const [password2, setPassword2] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [emailError, setEmailError] = useState('');
+  const [postalCode, setPostalCode] = useState('');
   const navigate = useNavigate();
   const [data, setData] = useState({
     userName: '',
@@ -25,11 +24,25 @@ export default function Signup() {
     }
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const response = await axios.get('https://geo.api.gouv.fr/communes?codePostal=' + postalCode)
+    const cityName = response.data[0].nom;
+
+    const updatedData = {
+      ...data,
+      adress: {
+        ...data.adress,
+        city: cityName,
+        postalCode: postalCode
+      }
+    };
+    
+    setData(updatedData);
+
     if (data.password === password2) {
-      axios.post('http://localhost:5000/api/auth/signup', data)
+      axios.post('http://localhost:5000/api/auth/signup', updatedData)
       .then(res => {
         console.log(res)
         
@@ -71,6 +84,17 @@ export default function Signup() {
             <p>Confirmation du mot de passe</p>
             <input type="password" value={password2} onChange={e => setPassword2(e.target.value)} />
           </label>
+          <label>
+            <p>Code postale</p>
+            <input type="text" value={postalCode} onChange={e => setPostalCode(e.target.value)} />
+          </label>
+
+          {/* <div>
+            <input list="city" />
+            <datalist id="city">
+              {city.map((op) => <option>{ op }</option>)}
+            </datalist>
+          </div> */}
           {passwordError && <p className='errorMessage'>{passwordError}</p>}
           <div className='button'>
             <button type="submit">Continuer</button>

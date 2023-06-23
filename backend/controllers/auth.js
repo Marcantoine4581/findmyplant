@@ -17,8 +17,8 @@ exports.signup = async (req, res, next) => {
           password: hash,
           adress: {
             street: '',
-            city: '',
-            postalCode: '',
+            city: req.body.adress.city,
+            postalCode: req.body.adress.postalCode,
             country: ''
           }
         });

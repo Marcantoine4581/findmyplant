@@ -1,5 +1,4 @@
 import NavBar from '../components/NavBar'
-import Search from '../components/Search'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -8,6 +7,7 @@ import Container from 'react-bootstrap/Container'
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import InputGroup from 'react-bootstrap/InputGroup';
+import SearchPlant from '../components/SearchPlant';
 
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -82,14 +82,20 @@ function ModifyAd() {
   return (
     <div>
       <NavBar />
-      <Search />
       <Container className="createAd-wrapper">
-        <h1>Modifier une annonce</h1>
+      <div className='createdAd-title'>
+          <h1>Modifier une annonce</h1>
+        </div>
       
        <Form onSubmit={onSubmit}>
 
+          <SearchPlant 
+            searchTerm={form.plantName}
+            handleSearch={updateForm}
+          />
+
           {/* Champ nom de la plante */}
-          <Form.Group controlId="plantName">
+          {/* <Form.Group controlId="plantName" className="createAd-group">
             <Form.Label>Nom de la plante</Form.Label>
             <Form.Control
               className='createAd-input' 
@@ -98,10 +104,11 @@ function ModifyAd() {
               value={form.plantName}
               onChange={(e) => updateForm({ plantName: e.target.value })}
             />
-          </Form.Group>
+          </Form.Group> */}
 
           {/* Select condition */}
-          <Form.Group>
+          <Form.Group className="createAd-group">
+            <Form.Label>Conditions: </Form.Label>
             <div className="form-check form-check-inline">
               <Form.Check
                 inline
@@ -147,15 +154,8 @@ function ModifyAd() {
             </div>
           </Form.Group>        
 
-          {/* <Form.Select aria-label="Default select example" style={{ marginTop: "20px" }}>
-            <option>Je vends / Je donne / Je troque ?</option>
-            <option value="Je vends">Je vends</option>
-            <option value="Je donne">Je donne</option>
-            <option value="Je troque">Je troque</option>
-          </Form.Select> */}
-
           {/* Price */}
-          <InputGroup className="price">
+          <InputGroup className="createAd-group">
             <Form.Label className='text-price'>Prix :</Form.Label>
             <Form.Control
               className='createAd-input'
@@ -169,7 +169,7 @@ function ModifyAd() {
           </InputGroup>
 
           {/* Comments */}
-          <Form.Group controlId="comments">
+          <Form.Group controlId="comments" className="createAd-group">
             <Form.Label>Comments</Form.Label>
             <Form.Control
               as="textarea"
@@ -190,7 +190,7 @@ function ModifyAd() {
             />
           </Form.Group> */}
 
-          <Form.Group controlId="image">
+          <Form.Group controlId="image" className="createAd-group">
             <Form.Label>Image</Form.Label>
             <Form.Control
               className="createAd-input"

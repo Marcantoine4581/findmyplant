@@ -1,11 +1,12 @@
 .fmp-plant-list {
 	list-style-type: none;
-	padding: 32px;
+	padding: 32px 0px;
 	display: flex;
 	flex-wrap: wrap;
-	max-width: 800px;
+	max-width: 960px;
 	margin-left: auto;
     margin-right: auto;
+	justify-content: center;
 	
 }
 

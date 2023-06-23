@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container'
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import InputGroup from 'react-bootstrap/InputGroup';
-import { accountService } from '../services/accountService';
+import SearchPlant from '../components/SearchPlant';
 
 
 function CreateAd() {
@@ -68,10 +68,15 @@ function CreateAd() {
     <div>
       <NavBar />
       <Container className="createAd-wrapper">
-        <h1 className='title'>Déposer une annonce</h1>
+        <div className='createdAd-title'>
+          <h1>Déposer une annonce</h1>
+        </div>
       
        <Form onSubmit={onSubmit}>
-        
+          <SearchPlant 
+            searchTerm={form.plantName}
+            handleSearch={updateForm}
+          />
           {/*  <Form.Group controlId="userId">
             <Form.Label>userId</Form.Label>
             <Form.Control 
@@ -83,7 +88,7 @@ function CreateAd() {
           </Form.Group> */}
 
           {/* Champ nom de la plante */}
-          <Form.Group controlId="plantName">
+          {/* <Form.Group controlId="plantName" className="createAd-group">
             <Form.Label>Nom de la plante</Form.Label>
             <Form.Control
               className='createAd-input' 
@@ -92,10 +97,11 @@ function CreateAd() {
               value={form.plantName}
               onChange={(e) => updateForm({ plantName: e.target.value })}
             />
-          </Form.Group>
+          </Form.Group> */}
 
           {/* Select condition */}
-          <Form.Group>
+          <Form.Group className="createAd-group">
+            <Form.Label>Conditions: </Form.Label>
             <div className="form-check form-check-inline">
               <Form.Check
                 inline
@@ -149,7 +155,7 @@ function CreateAd() {
           </Form.Select> */}
 
           {/* Price */}
-          <InputGroup className="price">
+          <InputGroup className="createAd-group">
             <Form.Label className='text-price'>Prix :</Form.Label>
             <Form.Control
               className='createAd-input'
@@ -163,7 +169,7 @@ function CreateAd() {
           </InputGroup>
 
           {/* Comments */}
-          <Form.Group controlId="comments">
+          <Form.Group controlId="comments" className="createAd-group">
             <Form.Label>Comments</Form.Label>
             <Form.Control
               as="textarea"
@@ -184,7 +190,7 @@ function CreateAd() {
             />
           </Form.Group> */}
 
-          <Form.Group controlId="image">
+          <Form.Group controlId="image" className="createAd-group">
             <Form.Label>Image</Form.Label>
             <Form.Control
               className="createAd-input"
@@ -194,7 +200,7 @@ function CreateAd() {
             />
           </Form.Group>
 
-          <Form.Group controlId="submit">
+          <Form.Group controlId="submit" className="createAd-group">
             <Button variant="primary" type="submit" style={{ marginTop: "20px" }}>
               Créer
             </Button>
