@@ -36,8 +36,7 @@ function ModifyAd() {
             
         })
         .catch(error => console.log(error))
-}, [id]);
-  
+}, [apiUrl, endpointproduct, id]);
   
   
    // These methods will update the state properties.

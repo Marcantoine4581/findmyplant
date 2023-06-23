@@ -28,7 +28,7 @@ export default function Account() {
 
             })
             .catch(error => console.log(error))
-    }, [uid]);
+    }, [uid, apiUrl, endpoint]);
 
     function onSubmit(e) {
         e.preventDefault()

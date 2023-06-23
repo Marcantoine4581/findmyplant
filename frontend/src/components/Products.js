@@ -23,7 +23,7 @@ function Products() {
         setData(dataStatusTrue);
         setFilteredData(dataStatusTrue);
       });
-  }, []);
+  }, [apiUrl, endpoint]);
 
   const handleSearch = event => {
     setSearchTerm(event.target.value);

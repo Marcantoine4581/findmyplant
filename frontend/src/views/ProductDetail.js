@@ -22,7 +22,7 @@ export default function ProductDetail() {
         setData(res.data.product)
       })
       .catch(error => console.log(error))
-  }, [id]);
+  }, [id, apiUrl, endpointproduct]);
 
   if (!data) {
     return null; // Return a loading state or placeholder while data is being fetched

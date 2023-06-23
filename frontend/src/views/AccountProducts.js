@@ -22,7 +22,7 @@ function AccountProducts() {
         console.log(data.products);
         setData(data.products);
       });
-  }, [uid]);
+  }, [uid, apiUrl, endpointuser]);
 
   const handleDeleteProduct = (productId) => {
     axios.delete(`${apiUrl}${endpointproduct}${productId}`)
