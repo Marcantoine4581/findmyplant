@@ -25,7 +25,7 @@ exports.createOneProduct = async (req, res, next) => {
             width: 600,
             crop: "scale"
         })
-        console.log(result)
+        console.log(path)
         const product = new Product({
             ...req.body,
             imageUrl: result.secure_url
