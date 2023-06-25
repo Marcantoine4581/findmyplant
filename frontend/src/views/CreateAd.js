@@ -14,6 +14,7 @@ function CreateAd() {
   const apiUrl = process.env.REACT_APP_API_URL;
   const endpointproduct = process.env.REACT_APP_END_POINT_PRODUCTS;
   const uid = localStorage.getItem('userId');
+  const [isLoading, setIsLoading] = useState(false);
   const [form, setForm] = useState({
     userId: uid,
     plantName: "",
@@ -41,7 +42,7 @@ function CreateAd() {
   // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
-
+    setIsLoading(true);
     // When a post request is sent to the create url, we'll add a new record to the database.
     /* const newProduct = { ...form }; */
     const formData = new FormData();
@@ -60,7 +61,8 @@ function CreateAd() {
         window.alert(error);
         return;
       });
-    
+
+    setIsLoading(false);
     setForm({ userId: "", plantName: "", condition: "", price: "", comment: "", imageUrl: "" });
     navigate("/");
   }
@@ -206,6 +208,7 @@ function CreateAd() {
               Créer
             </Button>
           </Form.Group>
+          {isLoading && <p>En cours de chargement</p>}
         </Form>
       </Container>
       

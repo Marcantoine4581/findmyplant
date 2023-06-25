@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Search from './Search';
 import PlantData from '../noms.json';
+import Pagination from './Pagination';
 
 function Products() {
   const apiUrl = process.env.REACT_APP_API_URL;
@@ -12,6 +13,8 @@ function Products() {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchCity, setSearchCity] = useState('');
   const [filteredData, setFilteredData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(12); // Nombre d'éléments par page
 
 
   useEffect(() => {
@@ -51,6 +54,37 @@ function Products() {
     setFilteredData(filtered);
   };
 
+    // Calculer le nombre total de pages
+    const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+    // Fonction pour passer à la page suivante
+    const nextPage = () => {
+      if (currentPage < totalPages) {
+        setCurrentPage(currentPage + 1);
+      }
+    };
+  
+    // Fonction pour passer à la page précédente
+    const prevPage = () => {
+      if (currentPage > 1) {
+        setCurrentPage(currentPage - 1);
+      }
+    };
+  
+    // Fonction pour passer à une page spécifique
+    const goToPage = (page) => {
+      if (page >= 1 && page <= totalPages) {
+        setCurrentPage(page);
+      }
+    };
+  
+    // Calculer l'indice de début et de fin des éléments affichés sur la page actuelle
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+  
+    // Obtenir les éléments à afficher sur la page actuelle
+    const itemsToDisplay = filteredData.slice(startIndex, endIndex);
+
 
   return (
     <div>
@@ -65,7 +99,7 @@ function Products() {
       />
 
       <article className='fmp-plant-list'>
-        {filteredData.map(({ _id, userId, imageUrl, plantName, price, condition }) => (
+        {itemsToDisplay.map(({ _id, userId, imageUrl, plantName, price, condition }) => (
           <Link to={`/product/${_id}`} key={_id}>
             <PlantItem
               _id={_id}
@@ -80,6 +114,15 @@ function Products() {
           </Link>
         ))}
       </article>
+
+      {/* Afficher la pagination */}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onNextPage={nextPage}
+        onPrevPage={prevPage}
+        onGoToPage={goToPage}
+      />
     </div>
   );
 }
