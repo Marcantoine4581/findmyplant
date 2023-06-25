@@ -99,7 +99,7 @@ exports.modifyProduct = async (req, res, next) => {
 exports.deleteProduct = (req, res, next) => {
     Product.findOne({ _id: req.params.id})
        .then(product => {
-            const filenameAndExt = product.split('/products/')[1];
+            const filenameAndExt = product.imageUrl.split('/products/')[1];
             const filename = filenameAndExt.split('.')[0];
             const public_id = "products/" + filename;
             console.log(public_id);
