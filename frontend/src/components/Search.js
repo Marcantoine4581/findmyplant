@@ -1,14 +1,15 @@
 import React from 'react';
 import '../styles/Search.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import PlantData from '../noms.json';
 
-function Search({ searchTerm, setSearchTerm, handleSearch, searchCity, handleSearchCity, handleSearchButtonClick, plantData }) {
-	const uniquePlantData = Array.from(new Set(plantData.map(op => op.nom_francais)));
+function Search({ searchTerm, setSearchTerm, handleSearch, searchCity, handleSearchCity, handleSearchButtonClick }) {
+	const uniquePlantData = Array.from(new Set(PlantData.map(op => op.nom_francais)));
 	const filteredOptions = uniquePlantData.filter(nom_francais =>
 		nom_francais.toLowerCase().includes(searchTerm.toLowerCase())
 	);
 	const [selectedItem, setSelectedItem] = useState('');
-	const [showResults, setShowResults] = useState(true);
+	const [showResults, setShowResults] = useState(false);
 
 	const handleDataItemClick = (nom) => {
 		setSelectedItem(nom); // Mettre à jour l'état avec la valeur du dataItem sélectionné
@@ -20,29 +21,58 @@ function Search({ searchTerm, setSearchTerm, handleSearch, searchCity, handleSea
 		setSearchTerm('');
 		setShowResults(true);
 	};
+	const handleShowResults = () => {
+		setShowResults(true);
+	};
+
+	const handlevalidation = () => {
+		setShowResults(false);
+	};
+
+	useEffect(() => {
+		console.log(showResults)
+	  }, [showResults]);
+
+	  useEffect(() => {
+		console.log(selectedItem);
+	}, [selectedItem]);
+
+	useEffect(() => {
+		if (searchTerm.length >= 3 && filteredOptions.length === 0) {
+		  setShowResults(false);
+		}
+	  }, [searchTerm, filteredOptions]);
+
 	return (
 		<div className='fmp-search'>
 			<div className='search-box'>
-				<label className='fmp-search-input'>
+				<label className='fmp-search-input' onClick={handleShowResults}>
 					<input
 						list="plant"
 						className='fmp-search-input-input'
 						type="text"
 						value={selectedItem || searchTerm}
 						placeholder="Rechercher une plante"
+						
 						onChange={handleSearch}
 					/>
+				</label>
 					{selectedItem && (
 						<button className='clear-selection' onClick={handleClearSelectedItem}>
 							X
 						</button>
+					)}
+					{(!selectedItem && searchTerm.length >= 3) && (
+					<button className='validation' type="button" onClick={handlevalidation}>
+						Valider
+					</button>
 					)}
 					{showResults && searchTerm.length >= 3 && (
 						<div className='dataResult'>
 							{filteredOptions.slice(0, 10).map((nom, index) => <p key={index} className='dataItem' onClick={() => handleDataItemClick(nom)}>{nom}</p>)}
 						</div>
 					)}
-				</label>
+				
 				<label className='fmp-search-input'>
 					<input
 						className='fmp-search-input-input'

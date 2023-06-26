@@ -3,7 +3,6 @@ import '../styles/Products.css'
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Search from './Search';
-import PlantData from '../noms.json';
 import Pagination from './Pagination';
 
 function Products() {
@@ -14,7 +13,7 @@ function Products() {
   const [searchCity, setSearchCity] = useState('');
   const [filteredData, setFilteredData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(12); // Nombre d'éléments par page
+  const [itemsPerPage] = useState(2); // Nombre d'éléments par page
 
 
   useEffect(() => {
@@ -95,7 +94,6 @@ function Products() {
         searchCity={searchCity}
         handleSearchCity={handleSearchCity}
         handleSearchButtonClick={handleSearchButtonClick}
-        plantData={PlantData}
       />
 
       <article className='fmp-plant-list'>

@@ -36,6 +36,10 @@ function SearchPlant({ searchTerm, handleSearch }) {
 		console.log(selectedItem);
 	}, [selectedItem]);
 
+	useEffect(() => {
+		console.log(showResults)
+	  }, [showResults]);
+
 
 	useEffect(() => {
 		if (searchTerm.length >= 3 && filteredOptions.length === 0) {

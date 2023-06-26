@@ -101,3 +101,20 @@
     padding: 5px;
     margin-top: 5px;
 }
+
+@media (max-width: 860px) {
+    .plant-detail-wrapper {
+        display: block;
+    }
+    .plant-detail-cover-background {
+        width: 100%;
+    }
+
+    .plant-detail-contact {
+        border-top: 1px solid;
+        display: flex;
+        align-items: center;
+        text-align: center;
+    }
+
+}
