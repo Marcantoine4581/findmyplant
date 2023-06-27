@@ -15,15 +15,12 @@ export default function Login() {
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
-  const setAuthToken = (token) => {
-    if (token) {
+  /* const setAuthToken = (token) => {
+    
       // Appliquer le token à l'en-tête de chaque requête
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    } else {
-      // Supprimer l'en-tête Authorization si le token est vide
-      delete axios.defaults.headers.common['Authorization'];
-    }
-  };
+    
+  }; */
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,7 +30,7 @@ export default function Login() {
       .then(res => {
         accountService.saveToken(res.data.token)
         accountService.saveUserId(res.data.userId)
-        setAuthToken(res.data.token);
+        /* setAuthToken(res.data.token); */
         navigate('/')
       })
       .catch(error => {

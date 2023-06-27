@@ -34,6 +34,7 @@
 .link-style {
     text-decoration: none;
     color: #16AF78;
+    
 }
 
 .link-style:hover {
@@ -43,17 +44,14 @@
 
 .button-ad .link-style {
     color: white;
-    
 }
 
 .button-ad {
     background-color: #16AF78;
-    text-decoration: none;
     border-radius: 5px;
 	border: solid  #16AF78 1px;
     margin: 10px;
     padding: 5px;
-    
 }
 
 .button-white {
@@ -100,15 +98,29 @@
         width: 100%;
         background-color: white;
         z-index: 1;
+        border-bottom: #16AF78 solid 1px;
     }
 
     .mobile-menu-icon {
         position: absolute;
         display: block;
         right: 20px;
+
     }
 
     ul li {
         text-align: center;
+    }
+
+    .button-ad, .button-white, .button-logout {
+        margin: 10px auto;
+        width: 100%;
+        border: none;
+        background-color: white;
+        font-size:x-large;
+        
+    }
+    .button-ad .link-style {
+        color: #16AF78;
     }
 }
