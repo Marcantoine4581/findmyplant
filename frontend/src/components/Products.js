@@ -13,7 +13,7 @@ function Products() {
   const [searchCity, setSearchCity] = useState('');
   const [filteredData, setFilteredData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(2); // Nombre d'éléments par page
+  const [itemsPerPage] = useState(12); // Nombre d'éléments par page
 
 
   useEffect(() => {
@@ -21,9 +21,11 @@ function Products() {
     fetch(`${apiUrl}${endpoint}`)
       .then(response => response.json())
       .then(data => {
+        // get products with the status "true"
         const dataStatusTrue = data.product.filter(item => item.status === true);
-        setData(dataStatusTrue);
-        setFilteredData(dataStatusTrue);
+        const sortedData = dataStatusTrue.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))
+        setData(sortedData);
+        setFilteredData(sortedData);
       });
   }, [apiUrl, endpoint]);
 

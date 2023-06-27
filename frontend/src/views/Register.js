@@ -13,6 +13,7 @@ export default function Signup() {
   const [passwordError, setPasswordError] = useState('');
   const [emailError, setEmailError] = useState('');
   const [postalCode, setPostalCode] = useState('');
+  const [postalCodeError, setPostalCodeError] = useState('');
   const navigate = useNavigate();
   const [data, setData] = useState({
     userName: '',
@@ -29,7 +30,7 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await axios.get('https://geo.api.gouv.fr/communes?codePostal=' + postalCode)
+    /* const response = await axios.get('https://geo.api.gouv.fr/communes?codePostal=' + postalCode)
     const cityName = response.data[0].nom;
 
     const updatedData = {
@@ -39,26 +40,43 @@ export default function Signup() {
         city: cityName,
         postalCode: postalCode
       }
-    };
-    
-    setData(updatedData);
+    }; */
 
-    if (data.password === password2) {
-      axios.post(`${apiUrl}${endpointauth}signup`, updatedData)
+    await axios.get('https://geo.api.gouv.fr/communes?codePostal=' + postalCode)
       .then(res => {
-        console.log(res)
-        
-        navigate('/')
-      })
-      .catch(error => {
-        console.log(error);
-        setEmailError(error.response.data.message)
-      })
-    } else {
-      setPasswordError("Les mots de passe ne correspondent pas");
-    }
+        if (res.data.length === 0) {
+          console.log("Le code postal est incorrect");
+          setPostalCodeError("Le code postal est incorrect");
+        }
+        const cityName = res.data[0].nom;
 
-    
+        const updatedData = {
+          ...data,
+          adress: {
+            ...data.adress,
+            city: cityName,
+            postalCode: postalCode
+          }
+        };
+
+        setData(updatedData);
+
+        if (data.password === password2) {
+          axios.post(`${apiUrl}${endpointauth}signup`, updatedData)
+            .then(res => {
+              console.log(res)
+
+              navigate('/')
+            })
+            .catch(error => {
+              console.log(error);
+              setEmailError(error.response.data.message)
+            })
+        } else {
+          setPasswordError("Les mots de passe ne correspondent pas");
+        }
+      })
+      .catch(error => { console.log(error) })
   };
 
   return(
@@ -86,10 +104,12 @@ export default function Signup() {
             <p>Confirmation du mot de passe</p>
             <input type="password" value={password2} onChange={e => setPassword2(e.target.value)} />
           </label>
+          {passwordError && <p className='errorMessage'>{passwordError}</p>}
           <label>
             <p>Code postale</p>
             <input type="text" value={postalCode} onChange={e => setPostalCode(e.target.value)} />
           </label>
+          {postalCodeError && <p className='errorMessage'>{postalCodeError}</p>}
 
           {/* <div>
             <input list="city" />
@@ -97,7 +117,7 @@ export default function Signup() {
               {city.map((op) => <option>{ op }</option>)}
             </datalist>
           </div> */}
-          {passwordError && <p className='errorMessage'>{passwordError}</p>}
+          
           <div className='button'>
             <button type="submit">Continuer</button>
           </div>
