@@ -14,7 +14,7 @@ function AccountProducts() {
   //const [updatedData, setUpdatedData] = useState([]);
   const uid = localStorage.getItem('userId');
 
-  useEffect(() => {
+  /* useEffect(() => {
     // Appel à l'API
     fetch(`${apiUrl}${endpointuser}${uid}/products`)
       .then(response => response.json())
@@ -22,7 +22,18 @@ function AccountProducts() {
         console.log(data.products);
         setData(data.products);
       });
-  }, [uid, apiUrl, endpointuser]);
+  }, [uid, apiUrl, endpointuser]); */
+
+  useEffect(() => {
+    axios.get(`${apiUrl}${endpointuser}${uid}/products`)
+        .then(res => {
+            console.log(res.data.products);
+            setData(res.data.products);
+      
+
+        })
+        .catch(error => console.log(error))
+}, [uid, apiUrl, endpointuser]);
 
   const handleDeleteProduct = (productId) => {
     axios.delete(`${apiUrl}${endpointproduct}${productId}`)
@@ -67,29 +78,35 @@ function AccountProducts() {
         <article className='accountProducts'>
           {data.map(({ _id, imageUrl, plantName, price, condition, status, createAt }, index) => (
             <div className='accountProducts-details' key={`${_id}-${index}`}>
-              <div className='plant-cover' style={{ backgroundImage: `url(${imageUrl})` }}></div>
-              <div className='accountProducts-details-text'>
-                <p>{plantName}</p>
-                {!price ? <p>{condition}</p> : <p>Prix : {price} €</p>}
-                <p>Date de création : {moment(createAt).format('DD-MM-YYYY')}</p>
+              <div className='accountProducts-mobile'>
+                <div className='plant-cover' style={{ backgroundImage: `url(${imageUrl})` }}></div>
+                <div className='accountProducts-details-text'>
+                  <p>{plantName}</p>
+                  {!price ? <p>{condition}</p> : <p>Prix : {price} €</p>}
+                  <p>Date de création : {moment(createAt).format('DD-MM-YYYY')}</p>
+                </div>
               </div>
-              <div className='accountProducts-button'>
-                <button className='modify'>
-                 <Link to={`/user/${uid}/modify-ad/${_id}`} key={_id}>
-                    Modifier
-                 </Link>
-                </button>
-                <button className='delete' onClick={() => handleDeleteProduct(_id)}>Supprimer</button>
+              
+              <div className='accountProducts-mobile'>
+                <div className='accountProducts-button'>
+                  <button className='modify'>
+                  <Link to={`/user/${uid}/modify-ad/${_id}`} key={_id}>
+                      Modifier
+                  </Link>
+                  </button>
+                  <button className='delete' onClick={() => handleDeleteProduct(_id)}>Supprimer</button>
+                </div>
+                <Form>
+                  <Form.Check
+                    type="switch"
+                    checked={status}
+                    id={_id}
+                    label="Disponibilité"
+                    onChange={() => handleSwitchToggle(_id)}
+                  />
+                </Form>
               </div>
-              <Form>
-                <Form.Check
-                  type="switch"
-                  checked={status}
-                  id={_id}
-                  label="Disponibilité"
-                  onChange={() => handleSwitchToggle(_id)}
-                />
-              </Form>
+              
             </div>
           ))}
         </article>

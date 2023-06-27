@@ -12,7 +12,7 @@ export default function Account() {
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
     const [passwordError, setPasswordError] = useState('');
-    const [pswVisible, setPswVisible] = useState(false);
+   /*  const [pswVisible, setPswVisible] = useState(false); */
     const [data, setData] = useState({
         userName: '',
         email: '',
@@ -25,9 +25,9 @@ export default function Account() {
         }
     });
 
-    const handleClick = () => {
+   /*  const handleClick = () => {
         setPswVisible(true);
-      };
+      }; */
 
     useEffect(() => {
         axios.get(`${apiUrl}${endpoint}` + uid)
@@ -90,25 +90,23 @@ export default function Account() {
                         Email:
                         <input type="text" value={data.email} onChange={e => setData({ ...data, email: e.target.value })} />
                     </label>
-                    <label className='label-input'>
+                   {/*  <label className='label-input'>
                         <p>Mot de passe:</p>
-                        <button className='contact-button' onClick={handleClick}>Modifier</button>
-                    </label>
+                        <button className='contact-button' onClick={() => setPswVisible(true)}>Modifier</button>
+                    </label> */}
                     
-                    {pswVisible && (
-                    <>
-                        <label className='label-input'>
-                            Nouveau mot de passe:
-                            <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-                        </label>
-                        {passwordError && <p className='errorMessage'>{passwordError}</p>}
-                        <label className='label-input'>
-                            Confirmation du mot de passe:
-                            <input type="password" value={password2} onChange={e => setPassword2(e.target.value)} />
-                        </label>
-                        {passwordError && <p className='errorMessage'>{passwordError}</p>}
-                        </>
-                    )}
+                    
+                    <label className='label-input'>
+                        Nouveau mot de passe:
+                        <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+                    </label>
+                    {passwordError && <p className='errorMessage'>{passwordError}</p>}
+                    <label className='label-input'>
+                        Confirmation du mot de passe:
+                        <input type="password" value={password2} onChange={e => setPassword2(e.target.value)} />
+                    </label>
+                    {passwordError && <p className='errorMessage'>{passwordError}</p>}
+                   
                     <p>Adresse: </p>
                     <label className='label-input'>
                         Rue:

@@ -7,22 +7,11 @@ import axios from 'axios';
 
 import { accountService } from '../services/accountService';
 
-/* async function loginUser(credentials) {
- return fetch('http://localhost:5000/api/auth/login', {
-   method: 'POST',
-   headers: {
-     'Content-Type': 'application/json'
-   },
-   body: JSON.stringify(credentials)
- })
-   .then(data => data.json())
-} */
-
 export default function Login() {
   const apiUrl = process.env.REACT_APP_API_URL;
   const endpointauth = process.env.REACT_APP_END_POINT_AUTH;
-  const [email, setEmail] = useState('motai@gmail.com');
-  const [password, setPassword] = useState('123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 

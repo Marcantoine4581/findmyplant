@@ -20,11 +20,17 @@
     margin-bottom: 10px;
 }
 
+.accountProducts-mobile {
+    display: flex;
+    gap: 40px;
+}
+
 
 
 .plant-cover {
     height: 150px;
     width: 100px;
+    min-width: 100px;
     background-position: center;
 	background-size: cover;
     border-radius: 10px;
@@ -72,4 +78,52 @@
 
 .accountProducts-details form {
     justify-content: center;
+}
+
+@media (max-width: 800px) {
+    .accountProducts {
+        width: 95%;
+        padding: 5px;
+    }
+    .accountProducts-details {
+        display: block;
+        border-bottom:#16AF78 solid 2px;
+        margin-bottom: 10px;
+    }
+
+    .accountProducts-button button {
+        margin: 10px 0px;
+        
+    }
+    .accountProducts-mobile {
+        justify-content: space-between;
+        gap: 5%;
+        margin: 0 auto;
+        padding: 0 10%;
+    }
+    
+}
+
+@media (max-width: 600px) {
+    .accountProducts {
+        width: 95%;
+        padding: 5px;
+    }
+    .accountProducts-details {
+        display: block;
+        border-bottom:#16AF78 solid 2px;
+        margin-bottom: 10px;
+    }
+
+    .accountProducts-button button {
+        margin: 10px 0px;
+        
+    }
+    .accountProducts-mobile {
+        justify-content: space-between;
+        gap: 5%;
+        margin: 0 auto;
+        padding: 0;
+    }
+    
 }
