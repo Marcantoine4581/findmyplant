@@ -66,7 +66,7 @@ export default function Signup() {
             .then(res => {
               console.log(res)
 
-              navigate('/')
+              navigate('/login')
             })
             .catch(error => {
               console.log(error);

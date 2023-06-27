@@ -18,13 +18,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .plant-detail-cover-background img {
     max-height: 400px;
     max-width: 600px;
     padding: 10px;
-    
 }
 
 .plant-detail-cover {
@@ -100,6 +100,12 @@
     border-radius: 5px;
     padding: 5px;
     margin-top: 5px;
+    
+}
+
+.plant-detail-email a {
+    text-decoration: none;
+    color: black;
 }
 
 @media (max-width: 860px) {

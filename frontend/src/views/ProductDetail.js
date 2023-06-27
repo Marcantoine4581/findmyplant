@@ -35,7 +35,10 @@ export default function ProductDetail() {
         <div>
           <div className='plant-detail-cover-background'>
             {/* <div className='plant-detail-cover' style={{ backgroundImage: `url(${data.imageUrl})` }}></div> */}
-            <img src={data.imageUrl} alt="image_plante" />
+            <a href={data.imageUrl}>
+              <img src={data.imageUrl} alt="image_plante" />
+            </a>
+            
           </div>
           <div className='plant-detail-name-price-condition'>
             <div className='plant-detail-name-condition'>
@@ -54,7 +57,7 @@ export default function ProductDetail() {
         <div className='plant-detail-contact'>
           <p className='plant-detail-userName'>{data.userId.userName}</p>
           <button className='contact-button' onClick={handleClick}>Contacter</button>
-          {mailVisible && <p className='plant-detail-email'>{data.userId.email}</p>}
+          {mailVisible && <p className='plant-detail-email'><a href={`mailto:${data.userId.email}`}>{data.userId.email}</a></p>}
           
         </div>
       </div>

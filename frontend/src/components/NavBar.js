@@ -20,9 +20,7 @@ function NavBar() {
 		<header>
 			<nav className='fmp-NavBar'>
 				<h1 className='fmp-title'>
-					<Link to="/" className="link-style">
-						{title}
-					</Link>
+					<a href="/" className="link-style">{title}</a>
 				</h1>
 				
 					<ul className={mobile ? "nav-menu-mobile" : "fmp-Nav-Menu" } onClick={() => setMobile(false)}>
