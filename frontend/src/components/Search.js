@@ -10,9 +10,10 @@ function Search({ searchTerm, setSearchTerm, handleSearch, searchCity, handleSea
 	);
 	const [selectedItem, setSelectedItem] = useState('');
 	const [showResults, setShowResults] = useState(false);
+	
 
 	const handleDataItemClick = (nom) => {
-		setSelectedItem(nom); // Mettre à jour l'état avec la valeur du dataItem sélectionné
+		setSelectedItem(nom); // Update state with value of selected dataItem
 		setShowResults(false);
 	};
 
@@ -28,14 +29,6 @@ function Search({ searchTerm, setSearchTerm, handleSearch, searchCity, handleSea
 	const handlevalidation = () => {
 		setShowResults(false);
 	};
-
-	useEffect(() => {
-		console.log(showResults)
-	  }, [showResults]);
-
-	  useEffect(() => {
-		console.log(selectedItem);
-	}, [selectedItem]);
 
 	useEffect(() => {
 		if (searchTerm.length >= 3 && filteredOptions.length === 0) {

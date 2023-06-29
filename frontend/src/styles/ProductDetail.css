@@ -32,7 +32,6 @@
 	width: 350px;
 	border-radius: 10px;
 	border: solid  #16AF78 1px;
-	/* overflow : hidden; */
 	background-position: center;
 	background-size: cover;
     margin: 0 auto;
@@ -99,8 +98,7 @@
     border: solid  #16AF78 1px;
     border-radius: 5px;
     padding: 5px;
-    margin-top: 5px;
-    
+    margin-top: 5px; 
 }
 
 .plant-detail-email a {
@@ -112,6 +110,7 @@
     .plant-detail-wrapper {
         display: block;
     }
+
     .plant-detail-cover-background {
         width: 100%;
     }
@@ -122,5 +121,4 @@
         align-items: center;
         text-align: center;
     }
-
 }

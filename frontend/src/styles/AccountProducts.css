@@ -25,8 +25,6 @@
     gap: 40px;
 }
 
-
-
 .plant-cover {
     height: 150px;
     width: 100px;
@@ -68,7 +66,6 @@
 .modify {
     background-color: #16AF78;
     border: solid  #16AF78 1px;
-    
 }
 
 .delete {
@@ -92,16 +89,15 @@
     }
 
     .accountProducts-button button {
-        margin: 10px 0px;
-        
+        margin: 10px 0px;   
     }
+
     .accountProducts-mobile {
         justify-content: space-between;
         gap: 5%;
         margin: 0 auto;
         padding: 0 10%;
     }
-    
 }
 
 @media (max-width: 600px) {
@@ -109,6 +105,7 @@
         width: 95%;
         padding: 5px;
     }
+
     .accountProducts-details {
         display: block;
         border-bottom:#16AF78 solid 2px;
@@ -117,13 +114,12 @@
 
     .accountProducts-button button {
         margin: 10px 0px;
-        
     }
+
     .accountProducts-mobile {
         justify-content: space-between;
         gap: 5%;
         margin: 0 auto;
         padding: 0;
     }
-    
 }

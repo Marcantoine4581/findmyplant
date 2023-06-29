@@ -1,5 +1,4 @@
 import '../styles/NavBar.css'
-//import Nav from 'react-bootstrap/Nav';
 import { Link, useNavigate } from 'react-router-dom'
 import { accountService } from "../services/accountService";
 import { FaBars } from 'react-icons/fa';

@@ -13,11 +13,10 @@ function Products() {
   const [searchCity, setSearchCity] = useState('');
   const [filteredData, setFilteredData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(12); // Nombre d'éléments par page
+  const [itemsPerPage] = useState(12); // Number of items per page
 
 
   useEffect(() => {
-    // Appel à l'API
     fetch(`${apiUrl}${endpoint}`)
       .then(response => response.json())
       .then(data => {
@@ -54,36 +53,36 @@ function Products() {
   
     setFilteredData(filtered);
   };
-
-    // Calculer le nombre total de pages
+    // Pagination part:
+    // Calculate the total number of pages
     const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
-    // Fonction pour passer à la page suivante
+    // Function to go to the next page
     const nextPage = () => {
       if (currentPage < totalPages) {
         setCurrentPage(currentPage + 1);
       }
     };
   
-    // Fonction pour passer à la page précédente
+    // Function to go to the previous page
     const prevPage = () => {
       if (currentPage > 1) {
         setCurrentPage(currentPage - 1);
       }
     };
   
-    // Fonction pour passer à une page spécifique
+    // Function to jump to a specific page
     const goToPage = (page) => {
       if (page >= 1 && page <= totalPages) {
         setCurrentPage(page);
       }
     };
   
-    // Calculer l'indice de début et de fin des éléments affichés sur la page actuelle
+    // Calculate the start and end index of the elements displayed on the current page
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
   
-    // Obtenir les éléments à afficher sur la page actuelle
+    // Get the elements to display on the current page
     const itemsToDisplay = filteredData.slice(startIndex, endIndex);
 
 
@@ -115,7 +114,7 @@ function Products() {
         ))}
       </article>
 
-      {/* Afficher la pagination */}
+      {/* Show pagination */}
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}

@@ -11,8 +11,6 @@
     padding: 20px 0px;
 }
 
-
-
 .account-form {
     width: 95%;
     max-width: 700px;
@@ -23,7 +21,6 @@
     max-width: 100%;
     font-weight: 700;
     color: #16AF78;
-
 }
 
 .account-wrapper label {
@@ -33,6 +30,7 @@
     justify-content:flex-start;
     justify-content: space-between;
 }
+
 .account-wrapper input {
     min-width: 200px;
     width: 50%;

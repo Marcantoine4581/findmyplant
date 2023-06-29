@@ -11,26 +11,12 @@ function AccountProducts() {
   const endpointproduct = process.env.REACT_APP_END_POINT_PRODUCTS;
   const endpointuser = process.env.REACT_APP_END_POINT_USER;
   const [data, setData] = useState([]);
-  //const [updatedData, setUpdatedData] = useState([]);
   const uid = localStorage.getItem('userId');
-
-  /* useEffect(() => {
-    // Appel à l'API
-    fetch(`${apiUrl}${endpointuser}${uid}/products`)
-      .then(response => response.json())
-      .then(data => {
-        console.log(data.products);
-        setData(data.products);
-      });
-  }, [uid, apiUrl, endpointuser]); */
 
   useEffect(() => {
     axios.get(`${apiUrl}${endpointuser}${uid}/products`)
         .then(res => {
-            console.log(res.data.products);
             setData(res.data.products);
-      
-
         })
         .catch(error => console.log(error))
 }, [uid, apiUrl, endpointuser]);
@@ -69,7 +55,6 @@ function AccountProducts() {
       });
   };
 
-
   return (
     <div>
       <NavBar />
@@ -106,7 +91,6 @@ function AccountProducts() {
                   />
                 </Form>
               </div>
-              
             </div>
           ))}
         </article>

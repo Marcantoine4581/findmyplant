@@ -18,7 +18,6 @@ export default function ProductDetail() {
   useEffect(() => {
     axios.get(`${apiUrl}${endpointproduct}` + id)
       .then(res => {
-        console.log(res.data.product)
         setData(res.data.product)
       })
       .catch(error => console.log(error))
@@ -34,11 +33,9 @@ export default function ProductDetail() {
       <div className='plant-detail-wrapper'>
         <div>
           <div className='plant-detail-cover-background'>
-            {/* <div className='plant-detail-cover' style={{ backgroundImage: `url(${data.imageUrl})` }}></div> */}
             <a href={data.imageUrl}>
               <img src={data.imageUrl} alt="image_plante" />
             </a>
-            
           </div>
           <div className='plant-detail-name-price-condition'>
             <div className='plant-detail-name-condition'>
@@ -58,7 +55,7 @@ export default function ProductDetail() {
           <p className='plant-detail-userName'>{data.userId.userName}</p>
           <button className='contact-button' onClick={handleClick}>Contacter</button>
           {mailVisible && <p className='plant-detail-email'><a href={`mailto:${data.userId.email}`}>{data.userId.email}</a></p>}
-          
+
         </div>
       </div>
     </div>

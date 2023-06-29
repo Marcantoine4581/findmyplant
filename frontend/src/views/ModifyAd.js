@@ -56,7 +56,7 @@ function ModifyAd() {
     if (form.price === null) {
       updateForm({ price: "0" });
     }
-    console.log(form.plantName);
+
     const formData = new FormData();
     formData.append("userId", uid);
     formData.append("plantName", form.plantName);
@@ -65,11 +65,8 @@ function ModifyAd() {
     formData.append("comment", form.comment);
     formData.append("image", form.image);
 
-    console.log(formData.get("image"));
-
     await axios.put(`${apiUrl}${endpointproduct}` + id, formData)
         .then(res => {
-            console.log(res)
             console.log('Mise à jour réussie !');
             setMessage(res.data.message);
         })
@@ -95,18 +92,6 @@ function ModifyAd() {
             searchTerm={form.plantName}
             handleSearch={updateForm}
           />
-
-          {/* Champ nom de la plante */}
-          {/* <Form.Group controlId="plantName" className="createAd-group">
-            <Form.Label>Nom de la plante</Form.Label>
-            <Form.Control
-              className='createAd-input' 
-              type="text"
-              placeholder="Nom de la plante"
-              value={form.plantName}
-              onChange={(e) => updateForm({ plantName: e.target.value })}
-            />
-          </Form.Group> */}
 
           {/* Select condition */}
           <Form.Group className="createAd-group">
@@ -181,17 +166,6 @@ function ModifyAd() {
             />
           </Form.Group>
 
-          {/* <Form.Group controlId="image">
-            <Form.Label>Lien de l'image</Form.Label>
-            <Form.Control
-              className='createAd-input' 
-              type="text"
-              placeholder="Ajouter le lien d'une image"
-              value={form.imageUrl}
-              onChange={(e) => updateForm({ imageUrl: e.target.value })}
-            />
-          </Form.Group> */}
-
           <Form.Group controlId="image" className="createAd-group">
             <Form.Label>Image</Form.Label>
             <Form.Control
@@ -210,8 +184,6 @@ function ModifyAd() {
         </Form>
       </Container>
       {message && <p>{message}</p>}
-      
-      
     </div>
   );
 }

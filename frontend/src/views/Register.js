@@ -30,22 +30,9 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    /* const response = await axios.get('https://geo.api.gouv.fr/communes?codePostal=' + postalCode)
-    const cityName = response.data[0].nom;
-
-    const updatedData = {
-      ...data,
-      adress: {
-        ...data.adress,
-        city: cityName,
-        postalCode: postalCode
-      }
-    }; */
-
     await axios.get('https://geo.api.gouv.fr/communes?codePostal=' + postalCode)
       .then(res => {
         if (res.data.length === 0) {
-          console.log("Le code postal est incorrect");
           setPostalCodeError("Le code postal est incorrect");
         }
         const cityName = res.data[0].nom;
@@ -65,11 +52,9 @@ export default function Signup() {
           axios.post(`${apiUrl}${endpointauth}signup`, updatedData)
             .then(res => {
               console.log(res)
-
               navigate('/login')
             })
             .catch(error => {
-              console.log(error);
               setEmailError(error.response.data.message)
             })
         } else {
@@ -110,13 +95,6 @@ export default function Signup() {
             <input type="text" value={postalCode} onChange={e => setPostalCode(e.target.value)} />
           </label>
           {postalCodeError && <p className='errorMessage'>{postalCodeError}</p>}
-
-          {/* <div>
-            <input list="city" />
-            <datalist id="city">
-              {city.map((op) => <option>{ op }</option>)}
-            </datalist>
-          </div> */}
           
           <div className='button'>
             <button type="submit">Continuer</button>

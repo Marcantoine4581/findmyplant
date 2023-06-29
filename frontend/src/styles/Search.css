@@ -28,7 +28,7 @@
 
 .hide-results {
     display: none;
-  }
+}
 
 .button-search {
     background-color: #16AF78;
@@ -36,7 +36,6 @@
     border-radius: 5px;
 	border: solid  #16AF78 1px;
     margin: 10px;
-    
 }
 
 .clear-selection, .validation {
@@ -44,8 +43,7 @@
     background-color: #16AF78;
     color: white;
     border-radius: 5px;
-    margin: 10px;
-    
+    margin: 10px;   
 }
 
 @media (max-width: 860px) {
@@ -60,6 +58,7 @@
         text-align: center;
         margin: 0 10px;
     }
+
     .fmp-search-input {
         justify-content: center;
         margin-top: 10px;

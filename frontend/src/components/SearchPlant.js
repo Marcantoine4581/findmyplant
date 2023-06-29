@@ -10,18 +10,18 @@ function SearchPlant({ searchTerm, handleSearch }) {
 		nom_francais.toLowerCase().includes(searchTerm.toLowerCase())
 	);
 	const [selectedItem, setSelectedItem] = useState('');
-    const [showResults, setShowResults] = useState(false);
+	const [showResults, setShowResults] = useState(false);
 
 	const handleDataItemClick = (nom) => {
-		setSelectedItem(nom); // Mettre à jour l'état avec la valeur du dataItem sélectionné
+		setSelectedItem(nom); // Update state with value of selected dataItem
 		handleSearch({ plantName: nom });
-        setShowResults(false);
+		setShowResults(false);
 	};
 
 	const handleClearSelectedItem = () => {
 		setSelectedItem('');
 		handleSearch({ plantName: '' });
-        setShowResults(true);
+		setShowResults(true);
 	};
 
 	const handleShowResults = () => {
@@ -33,60 +33,41 @@ function SearchPlant({ searchTerm, handleSearch }) {
 	};
 
 	useEffect(() => {
-		console.log(selectedItem);
-	}, [selectedItem]);
-
-	useEffect(() => {
-		console.log(showResults)
-	  }, [showResults]);
-
-
-	useEffect(() => {
 		if (searchTerm.length >= 3 && filteredOptions.length === 0) {
-		  setShowResults(false);
+			setShowResults(false);
 		}
-	  }, [searchTerm, filteredOptions]);
+	}, [searchTerm, filteredOptions]);
 
 	return (
 		<div>
 			<div className="createdAd-plantName">
-				
-			<Form.Group controlId="plantName" className="createAd-group" onClick={handleShowResults}>
-						<Form.Label>Nom de la plante</Form.Label>
-						<Form.Control
-							className='createAd-input'
-							type="text"
-							placeholder="Nom de la plante"
-							value={selectedItem || searchTerm}
-							onChange={(e) => handleSearch({ plantName: e.target.value })}
-							
-							
-						/>
-					</Form.Group>
-					{/* <input
-						list="plant"
-						className='fmp-search-input-input'
+				<Form.Group controlId="plantName" className="createAd-group" onClick={handleShowResults}>
+					<Form.Label>Nom de la plante</Form.Label>
+					<Form.Control
+						className='createAd-input'
 						type="text"
+						placeholder="Nom de la plante"
 						value={selectedItem || searchTerm}
-						placeholder="Rechercher une plante"
 						onChange={(e) => handleSearch({ plantName: e.target.value })}
-					/> */}
-					{(selectedItem) && (
-						<button className='clear-selection' onClick={handleClearSelectedItem}>
-							Modifier
-						</button>
-					)}
+					/>
+				</Form.Group>
 
-					{(!selectedItem && searchTerm.length >= 3) && (
+				{(selectedItem) && (
+					<button className='clear-selection' onClick={handleClearSelectedItem}>
+						Modifier
+					</button>
+				)}
+
+				{(!selectedItem && searchTerm.length >= 3) && (
 					<button className='validation' type="button" onClick={handlevalidation}>
 						Valider
 					</button>
-					)}
-					{showResults && searchTerm.length >= 3 && (
-						<div className='dataResult' >
-							{filteredOptions.slice(0, 10).map((nom, index) => <p key={index} className='dataItem' onClick={() => handleDataItemClick(nom)}>{nom}</p>)}
-						</div>
-					)}
+				)}
+				{showResults && searchTerm.length >= 3 && (
+					<div className='dataResult' >
+						{filteredOptions.slice(0, 10).map((nom, index) => <p key={index} className='dataItem' onClick={() => handleDataItemClick(nom)}>{nom}</p>)}
+					</div>
+				)}
 			</div>
 		</div>
 	);

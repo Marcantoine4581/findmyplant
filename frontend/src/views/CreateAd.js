@@ -34,7 +34,6 @@ function CreateAd() {
 
   function handleImageUpload(e) {
     const file = e.target.files[0];
-    /* const formData = new FormData(); */
     updateForm({ image: file });
   };
 
@@ -43,8 +42,7 @@ function CreateAd() {
   async function onSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    // When a post request is sent to the create url, we'll add a new record to the database.
-    /* const newProduct = { ...form }; */
+
     const formData = new FormData();
     formData.append("userId", form.userId);
     formData.append("plantName", form.plantName);
@@ -80,27 +78,6 @@ function CreateAd() {
             searchTerm={form.plantName}
             handleSearch={updateForm}
           />
-          {/*  <Form.Group controlId="userId">
-            <Form.Label>userId</Form.Label>
-            <Form.Control 
-              type="text"
-              placeholder="userId"
-              value={form.userId}
-              onChange={(e) => updateForm({ userId: e.target.value })}
-            />
-          </Form.Group> */}
-
-          {/* Champ nom de la plante */}
-          {/* <Form.Group controlId="plantName" className="createAd-group">
-            <Form.Label>Nom de la plante</Form.Label>
-            <Form.Control
-              className='createAd-input' 
-              type="text"
-              placeholder="Nom de la plante"
-              value={form.plantName}
-              onChange={(e) => updateForm({ plantName: e.target.value })}
-            />
-          </Form.Group> */}
 
           {/* Select condition */}
           <Form.Group className="createAd-group">
@@ -148,14 +125,7 @@ function CreateAd() {
                 }}
               />
             </div>
-          </Form.Group>        
-
-          {/* <Form.Select aria-label="Default select example" style={{ marginTop: "20px" }}>
-            <option>Je vends / Je donne / Je troque ?</option>
-            <option value="Je vends">Je vends</option>
-            <option value="Je donne">Je donne</option>
-            <option value="Je troque">Je troque</option>
-          </Form.Select> */}
+          </Form.Group>
 
           {/* Price */}
           <InputGroup className="createAd-group">
@@ -182,17 +152,6 @@ function CreateAd() {
             />
           </Form.Group>
 
-         {/*  <Form.Group controlId="image">
-            <Form.Label>Lien de l'image</Form.Label>
-            <Form.Control
-              className='createAd-input' 
-              type="text"
-              placeholder="Ajouter le lien d'une image"
-              value={form.imageUrl}
-              onChange={(e) => updateForm({ imageUrl: e.target.value })}
-            />
-          </Form.Group> */}
-
           <Form.Group controlId="image" className="createAd-group">
             <Form.Label>Image</Form.Label>
             <Form.Control
@@ -211,8 +170,6 @@ function CreateAd() {
           {isLoading && <p>En cours de chargement</p>}
         </Form>
       </Container>
-      
-      
     </div>
   );
 }

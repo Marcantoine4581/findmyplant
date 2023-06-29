@@ -12,7 +12,6 @@ export default function Account() {
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
     const [passwordError, setPasswordError] = useState('');
-   /*  const [pswVisible, setPswVisible] = useState(false); */
     const [data, setData] = useState({
         userName: '',
         email: '',
@@ -25,17 +24,10 @@ export default function Account() {
         }
     });
 
-   /*  const handleClick = () => {
-        setPswVisible(true);
-      }; */
-
     useEffect(() => {
         axios.get(`${apiUrl}${endpoint}` + uid)
             .then(res => {
-                console.log(res.data.user);
                 setData(res.data.user);
-                /* setData({ password: ""}); */
-
             })
             .catch(error => console.log(error))
     }, [uid, apiUrl, endpoint]);
@@ -45,24 +37,19 @@ export default function Account() {
         if (password === "" && (password === password2)) {
             axios.put(`${apiUrl}${endpoint}` + uid, data)
                 .then(res => {
-                    console.log(res.data)
                     console.log('Mise à jour réussie !');
                     setMessage(res.data.message);
                 })
                 .catch(error => console.log(error))
         } else if (password !== "" && (password === password2)) {
-            console.log(data.password);
             const updatedData = {
                 ...data,
                 password: password
-              };
-            
-              setData(updatedData);
+            };
+            setData(updatedData);
 
-              console.log(updatedData.password);
-              axios.put(`${apiUrl}${endpoint}` + uid, updatedData)
+            axios.put(`${apiUrl}${endpoint}` + uid, updatedData)
                 .then(res => {
-                    console.log(res.data)
                     console.log('Mise à jour réussie !');
                     setMessage(res.data.message);
                 })
@@ -70,7 +57,7 @@ export default function Account() {
         } else {
             setPasswordError("Les mots de passe ne correspondent pas");
         }
-    } 
+    }
 
     return (
         <div>
@@ -90,12 +77,6 @@ export default function Account() {
                         Email:
                         <input type="text" value={data.email} onChange={e => setData({ ...data, email: e.target.value })} />
                     </label>
-                   {/*  <label className='label-input'>
-                        <p>Mot de passe:</p>
-                        <button className='contact-button' onClick={() => setPswVisible(true)}>Modifier</button>
-                    </label> */}
-                    
-                    
                     <label className='label-input'>
                         Nouveau mot de passe:
                         <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
@@ -106,7 +87,7 @@ export default function Account() {
                         <input type="password" value={password2} onChange={e => setPassword2(e.target.value)} />
                     </label>
                     {passwordError && <p className='errorMessage'>{passwordError}</p>}
-                   
+
                     <p>Adresse: </p>
                     <label className='label-input'>
                         Rue:

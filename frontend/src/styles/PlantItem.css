@@ -3,15 +3,14 @@
 	color: #16AF78;
 	font-weight: bold;
 }
+
 .fmp-plant-item-cover-condition {
 	height: 300px;
 	width: 220px;
 	border-radius: 10px;
 	border: solid  #16AF78 1px;
-	/* overflow : hidden; */
 	background-position: center;
 	background-size: cover;
-
 }
 
 .fmp-plant-item {

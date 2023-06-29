@@ -6,7 +6,6 @@ function PlantItem({ _id, userName, imageUrl, plantName, price, condition, city,
 			<div className='fmp-plant-item-userName'>{userName}</div>
 			<div className='fmp-plant-item-city'>{city ? city : null} {postalCode ? postalCode : null}</div>
 			<div className='fmp-plant-item-cover-condition' style={{backgroundImage: `url(${imageUrl})`}}>
-				{/* <img className='fmp-plant-item-cover' src={imageUrl} alt={`${plantName} cover`} /> */}
 				<p className='fmp-condition'>{condition}</p>
 			</div>
 			{plantName}
