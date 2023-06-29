@@ -98,7 +98,7 @@ export default function Account() {
                         <input type="text" value={data.adress.city} onChange={e => setData({ ...data, adress: { ...data.adress, city: e.target.value } })} />
                     </label>
                     <label className='label-input'>
-                        Code postale:
+                        Code postal:
                         <input type="text" value={data.adress.postalCode} onChange={e => setData({ ...data, adress: { ...data.adress, postalCode: e.target.value } })} />
                     </label>
                     <label className='label-input'>

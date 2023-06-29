@@ -91,7 +91,7 @@ export default function Signup() {
           </label>
           {passwordError && <p className='errorMessage'>{passwordError}</p>}
           <label>
-            <p>Code postale</p>
+            <p>Code postal</p>
             <input type="text" value={postalCode} onChange={e => setPostalCode(e.target.value)} />
           </label>
           {postalCodeError && <p className='errorMessage'>{postalCodeError}</p>}

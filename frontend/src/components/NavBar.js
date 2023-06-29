@@ -54,7 +54,7 @@ function NavBar() {
 										</Link>
 									</li>
 									<li className='button-logout' onClick={logout}>
-										Déconnection
+										Déconnexion
 									</li>
 								</>
 							)}

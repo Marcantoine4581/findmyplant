@@ -157,7 +157,7 @@ function ModifyAd() {
 
           {/* Comments */}
           <Form.Group controlId="comments" className="createAd-group">
-            <Form.Label>Comments</Form.Label>
+            <Form.Label>Commentaires</Form.Label>
             <Form.Control
               as="textarea"
               rows={3}
