@@ -21,7 +21,7 @@ function Products() {
     fetch(`${apiUrl}${endpoint}`)
       .then(response => response.json())
       .then(data => {
-        setIsLoading(false);
+        setIsLoading(true);
         // get products with the status "true"
         const dataStatusTrue = data.product.filter(item => item.status === true);
         const sortedData = dataStatusTrue.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))
@@ -100,7 +100,12 @@ function Products() {
         handleSearchButtonClick={handleSearchButtonClick}
       />
 
-      {isLoading && <p className='loading'>En cours de chargement</p>}
+      {isLoading && 
+      <div>
+        <p className='loading'> Ce site web est un projet et le serveur s'arrête en cas d'inactivité.</p>
+        <p className='loading'> Merci de patienter quelques secondes.</p>
+      </div>
+      }
 
       <article className='fmp-plant-list'>
         {itemsToDisplay.map(({ _id, userId, imageUrl, plantName, price, condition }) => (
