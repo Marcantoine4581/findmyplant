@@ -12,6 +12,7 @@ function Products() {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchCity, setSearchCity] = useState('');
   const [filteredData, setFilteredData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(12); // Number of items per page
 
@@ -20,6 +21,7 @@ function Products() {
     fetch(`${apiUrl}${endpoint}`)
       .then(response => response.json())
       .then(data => {
+        setIsLoading(false);
         // get products with the status "true"
         const dataStatusTrue = data.product.filter(item => item.status === true);
         const sortedData = dataStatusTrue.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))
@@ -88,6 +90,7 @@ function Products() {
 
   return (
     <div>
+      
       <Search
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
@@ -96,6 +99,8 @@ function Products() {
         handleSearchCity={handleSearchCity}
         handleSearchButtonClick={handleSearchButtonClick}
       />
+
+      {isLoading && <p className='loading'>En cours de chargement</p>}
 
       <article className='fmp-plant-list'>
         {itemsToDisplay.map(({ _id, userId, imageUrl, plantName, price, condition }) => (

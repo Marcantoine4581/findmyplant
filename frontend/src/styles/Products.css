@@ -17,3 +17,9 @@
 .fmp-plant-list a:hover {
 	color: black;
 }
+
+.loading {
+	color: #16AF78;
+	text-align: center;
+	font-weight: bold;
+}
