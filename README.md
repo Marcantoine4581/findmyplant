@@ -3,8 +3,14 @@ This project is still in progress...
 
 This web application is for all passionates of plants and flowers.
 
-
 <img src="https://i.ibb.co/ZfzcSdv/homepage.png" alt="homepage" border="0">
+
+## Story
+Many people are looking for specifical plants or flowers which sometimes are not easy to find locally.
+On the other hand, there are people who can have too many flowers because each of them grow up. 
+So instead of throwing their plants in the trash, they could sell or share them.
+
+This is why I created FindMyPlant.
 
 ## Sreenshot
 ### On laptop
