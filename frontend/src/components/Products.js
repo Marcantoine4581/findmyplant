@@ -21,7 +21,7 @@ function Products() {
     fetch(`${apiUrl}${endpoint}`)
       .then(response => response.json())
       .then(data => {
-        setIsLoading(true);
+        setIsLoading(false);
         // get products with the status "true"
         const dataStatusTrue = data.product.filter(item => item.status === true);
         const sortedData = dataStatusTrue.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))
