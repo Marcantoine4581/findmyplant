@@ -37,7 +37,7 @@ function NavBar() {
 								</li>
 								<li className='button-white'>
 									<Link to="/signup" className="link-style">
-										S'enregitrer
+										S'enregistrer
 									</Link>
 								</li>
 							</>
